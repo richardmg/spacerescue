@@ -2,14 +2,14 @@ import Qt 4.7
 
 Rectangle {
     id: top
-    width: 360
-    height: 360
+    width: 800
+    height: 600
 
     RaceTrack {
         id: track
         visible: true
-        centerX: mousearea.mouseX
-        centerY: mousearea.mouseY
+        centerX: ship.logicalPosX
+        centerY: ship.logicalPosY
     }
 
     Spaceship {
@@ -24,4 +24,16 @@ Rectangle {
         hoverEnabled: true
         onPositionChanged: ship.setGlobalDirection(mouse.x, mouse.y)
     }
+
+    Timer {
+        id: gameStepTimer
+        interval: 50;
+        running: true;
+        repeat: true
+
+        onTriggered: {
+            ship.gameStep();
+        }
+    }
+
 }

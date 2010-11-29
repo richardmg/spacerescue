@@ -1,7 +1,7 @@
 # Add more folders to ship with the application, here
-#qmlfiles.source = qml/spacerace
-#qmlfiles.target = qml
-#DEPLOYMENTFOLDERS = qmlfiles
+qmlfiles.source = qml/spacerace
+qmlfiles.target = qml
+DEPLOYMENTFOLDERS = qmlfiles
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
@@ -36,7 +36,10 @@ OTHER_FILES += \
     img/trackmask.png \
     img/spaceship1.gif \
     img/fire2.gif \
-    img/fire1.gif
+    img/fire1.gif \
+    qml/spacerace/Spaceship.qml \
+    qml/spacerace/RaceTrack.qml \
+    qml/spacerace/main.qml
 
 RESOURCES += \
     spaceresources.qrc
