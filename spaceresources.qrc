@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/space">
+        <file>img/fire1.gif</file>
+        <file>img/fire2.gif</file>
+        <file>img/spaceship1.gif</file>
+        <file>img/trackmask.png</file>
+    </qresource>
+</RCC>
