@@ -43,3 +43,6 @@ OTHER_FILES += \
 
 RESOURCES += \
     spaceresources.qrc
+
+INCLUDEPATH += /home/richard/git/public/qt-mobility-intalled/include
+INCLUDEPATH += /home/richard/git/public/qt-mobility-intalled/include/QtMobility
