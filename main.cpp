@@ -30,6 +30,9 @@ public:
 
     bool filter(QRotationReading *reading)
     {
+        if (!isEnabled())
+            return false;
+
         if (reading->x() != _rotationX) {
             _rotationX = reading->x();
             emit rotationXChanged(_rotationX);

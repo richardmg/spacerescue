@@ -16,6 +16,7 @@ Rectangle {
         id: ship
         x: top.width / 2
         y: top.height / 2
+        mouseControlled: mousearea.pressed
     }
 
     MouseArea {

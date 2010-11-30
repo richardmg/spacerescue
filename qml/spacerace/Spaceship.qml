@@ -3,17 +3,40 @@ import SpaceDebris 1.0
 
 Image {
     id: ship
-    property real thrust: 0                 // current speed gain (0 -> 1)
-    property real engineSize: 10            // how fast the ship will move upon full thrust
-    property real directionInRadians: 0     // orientation of ship
-    property real logicalPosX               // location of ship on the map
-    property real logicalPosY               // location of ship on the map
-    property real wobble: 0                 // visual shaking of ship
+    property real thrust: 0                     // current speed gain (0 -> 1)
+    property real engineSize: 10                // how fast the ship will move upon full thrust
+    property real directionInRadians: 0         // orientation of ship
+    property real logicalPosX                   // location of ship on the map
+    property real logicalPosY                   // location of ship on the map
+    property real wobble: 0                     // visual shaking of ship
+
+    property real rotationNoThrust: 40          // x rotation where ship have no thrust
+    property real rotationFullThrust: 25        // x rotation where ship have full thrust
+    property real rotationMaxBank: 50           // y rotation when ship rotate the most
+    property real directionAtMaxBank: Math.PI/9 // orientation of ship at rotationMaxBank
+
+    property bool mouseControlled: false        // ship controlled by mouse or sensor
 
     rotation: (180 * directionInRadians / Math.PI)// + ((thrust == 1) ? wobble : 0);
     source: "qrc:/space/img/spaceship1.gif"
 
+    Image {
+        id: fire
+        property int imgNr: 1
+        property int imgCount: 2
+        property int flipImage: 1;
+
+        anchors.top: ship.bottom
+        anchors.horizontalCenter: ship.horizontalCenter
+        width: sourceSize.width * thrust * flipImage;
+        height: sourceSize.height * thrust
+        source: "qrc:/space/img/fire" + imgNr + ".gif"
+    }
+
     function setGlobalDirection(x, y) {
+        if (!ship.mouseControlled)
+            return;
+
         var halfShipHeight = ship.height / 2;
         var halfShipWidth = ship.width / 2;
         var relX = ship.pos.x + halfShipWidth - x;
@@ -29,36 +52,24 @@ Image {
         thrust = thrustUnomalized;
     }
 
-    Text {
-        x: 50
-        id: text
-        text: shipRotation.rotationX + ", " + shipRotation.rotationY + ", " + shipRotation.rotationZ
-    }
-
-    Image {
-        id: fire
-        property int imgNr: 1
-        property int imgCount: 2
-        property int flipImage: 1;
-
-        anchors.top: ship.bottom
-        anchors.horizontalCenter: ship.horizontalCenter
-        width: sourceSize.width * thrust * flipImage;
-        height: sourceSize.height * thrust
-        source: "qrc:/space/img/fire" + imgNr + ".gif"
-    }
-
     ShipRotation {
         id: shipRotation
-//        property real xx: 0
-//        property real yy: 0
-//        property real zz: 0
+        enabled: ship.mouseControlled == false;
 
-//        onShipRotationChanged: {
-//            xx = rotationX;
-//            yy = rotationY;
-//            zz = rotationZ;
-//        }
+        onRotationXChanged: {
+            var thrustRange = ship.rotationFullThrust - ship.rotationNoThrust;
+            var t = ((rotationX - ship.rotationNoThrust) / thrustRange);
+            if (t < 0) t = 0;
+            if (t > 1) t = 1;
+            ship.thrust = t;
+        }
+
+        onRotationYChanged: {
+            var r = rotationY / ship.rotationMaxBank;
+            if (r < -1) r = -1;
+            if (r >  1) r =  1;
+            directionInRadians += r * directionAtMaxBank;
+        }
     }
 
     function moveShip()
