@@ -1,4 +1,5 @@
 import Qt 4.7
+import SpaceDebris 1.0
 
 Image {
     id: ship
@@ -31,7 +32,7 @@ Image {
     Text {
         x: 50
         id: text
-        text: logicalPosX + ", " + logicalPosY
+        text: shipRotation.rotationX + ", " + shipRotation.rotationY + ", " + shipRotation.rotationZ
     }
 
     Image {
@@ -45,6 +46,19 @@ Image {
         width: sourceSize.width * thrust * flipImage;
         height: sourceSize.height * thrust
         source: "qrc:/space/img/fire" + imgNr + ".gif"
+    }
+
+    ShipRotation {
+        id: shipRotation
+//        property real xx: 0
+//        property real yy: 0
+//        property real zz: 0
+
+//        onShipRotationChanged: {
+//            xx = rotationX;
+//            yy = rotationY;
+//            zz = rotationZ;
+//        }
     }
 
     function moveShip()
