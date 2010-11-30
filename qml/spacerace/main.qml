@@ -5,11 +5,10 @@ Rectangle {
     width: 800
     height: 600
 
-    RaceTrack {
-        id: track
-        visible: true
-        centerX: ship.logicalPosX
-        centerY: ship.logicalPosY
+    UniverseBackground {
+        id: universeBackground
+        positionX: ship.logicalPosX
+        positionY: ship.logicalPosY
     }
 
     Spaceship {
@@ -27,7 +26,7 @@ Rectangle {
     }
 
     Timer {
-        id: gameStepTimer
+        id: gameTimer
         interval: 50;
         running: true;
         repeat: true

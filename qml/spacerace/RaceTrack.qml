@@ -15,8 +15,5 @@ Rectangle {
         x: -trackRoot.centerX + (trackRoot.width / 2)
         y: trackRoot.centerY + (trackRoot.height / 2)
         source: "qrc:/space/img/trackmask.png"
-
-//        Behavior on x { NumberAnimation { duration: 40 } }
-//        Behavior on y { NumberAnimation { duration: 40 } }
     }
 }
