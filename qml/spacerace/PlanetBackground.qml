@@ -2,22 +2,22 @@ import Qt 4.7
 
 Item {
     id: universe
-    property real positionX
-    property real positionY
-    property real planetPositionX
-    property real planetPositionY
+    property real cameraX
+    property real cameraY
+    property real planetX
+    property real planetY
     property real distance: 1
     property string bgimage: ""
 
-    onPositionXChanged: updatePlanet();
+    onCameraXChanged: updatePlanet();
     Component.onCompleted: updatePlanet();
 
     function updatePlanet()
     {
-        var posX = positionX * distance;
-        var posY = positionY * distance;
-        planet.x = -(-planetPositionX + posX + (width / 2));
-        planet.y = planetPositionY + posY + (height / 2);
+        var posX = cameraX * distance;
+        var posY = cameraY * distance;
+        planet.x = -(-planetX + posX + (width / 2));
+        planet.y = planetY + posY + (height / 2);
     }
 
     Image {

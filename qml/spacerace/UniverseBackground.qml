@@ -2,8 +2,8 @@ import Qt 4.7
 
 Item {
     id: universe
-    property real positionX: 0
-    property real positionY: 0
+    property real cameraX: 0
+    property real cameraY: 0
     property real windx: 0
     property real windy: 0
 
@@ -13,13 +13,13 @@ Item {
     property real halfWidth:  bg11.width / 2;
     property real halfHeight: bg11.height / 2;
 
-    onPositionXChanged: updateUniverse();
+    onCameraXChanged: updateUniverse();
     Component.onCompleted: updateUniverse();
 
     function updateUniverse()
     {
-           var posX = positionX * distance;
-           var posY = positionY * distance;
+           var posX = cameraX * distance;
+           var posY = cameraY * distance;
            var tileX = Math.round((posX / bg11.width) - 0.5);
            var tileY = Math.round((posY / bg11.height) - 0.5);
 

@@ -7,42 +7,42 @@ Rectangle {
     color: "#000000"
 
     UniverseBackground {
-        positionX: ship.logicalPosX
-        positionY: ship.logicalPosY
+        cameraX: ship.logicalPosX
+        cameraY: ship.logicalPosY
         bgimage: "qrc:/space/img/frontstars.gif"
         distance: 0.1
     }
 
     PlanetBackground {
-        positionX: ship.logicalPosX
-        positionY: ship.logicalPosY
-        planetPositionX: 500
-        planetPositionY: 100
+        cameraX: ship.logicalPosX
+        cameraY: ship.logicalPosY
+        planetX: 500
+        planetY: 100
         bgimage: "qrc:/space/img/sun.png"
         distance: 0.11
     }
 
     PlanetBackground {
-        positionX: ship.logicalPosX
-        positionY: ship.logicalPosY
-        planetPositionX: -100
-        planetPositionY: 280
+        cameraX: ship.logicalPosX
+        cameraY: ship.logicalPosY
+        planetX: -100
+        planetY: 280
         bgimage: "qrc:/space/img/earth.png"
         distance: 0.2
     }
 
     PlanetBackground {
-        positionX: ship.logicalPosX
-        positionY: ship.logicalPosY
-        planetPositionX: 1200
-        planetPositionY: 600
+        cameraX: ship.logicalPosX
+        cameraY: ship.logicalPosY
+        planetX: 1200
+        planetY: 600
         bgimage: "qrc:/space/img/moon.png"
         distance: 0.3
     }
 
     UniverseBackground {
-        positionX: ship.logicalPosX
-        positionY: ship.logicalPosY
+        cameraX: ship.logicalPosX
+        cameraY: ship.logicalPosY
         windx: 1
         windy: 1
         bgimage: "qrc:/space/img/universe.png"
@@ -57,12 +57,12 @@ Rectangle {
     }
 
     UniverseBackground {
-        positionX: ship.logicalPosX
-        positionY: ship.logicalPosY
+        cameraX: ship.logicalPosX
+        cameraY: ship.logicalPosY
         windx: 2
         windy: 2
         bgimage: "qrc:/space/img/universetop2.png"
-        distance: 6
+        distance: 10
     }
 
     MouseArea {
