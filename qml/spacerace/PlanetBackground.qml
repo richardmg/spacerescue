@@ -9,10 +9,14 @@ Item {
     property real distance: 1
     property string bgimage: ""
 
-    onPositionXChanged: {
+    onPositionXChanged: updatePlanet();
+    Component.onCompleted: updatePlanet();
+
+    function updatePlanet()
+    {
         var posX = positionX * distance;
         var posY = positionY * distance;
-        planet.x = -(planetPositionX + posX + (width / 2));
+        planet.x = -(-planetPositionX + posX + (width / 2));
         planet.y = planetPositionY + posY + (height / 2);
     }
 

@@ -6,8 +6,8 @@ Image {
     property real thrust: 0                     // current speed gain (0 -> 1)
     property real engineSize: 10                // how fast the ship will move upon full thrust
     property real directionInRadians: 0         // orientation of ship
-    property real logicalPosX                   // location of ship on the map
-    property real logicalPosY                   // location of ship on the map
+    property real logicalPosX: 0                // location of ship on the map
+    property real logicalPosY: 0                // location of ship on the map
     property real wobble: 0                     // visual shaking of ship
 
     property real rotationNoThrust: 40          // x rotation where ship have no thrust
