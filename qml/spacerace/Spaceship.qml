@@ -5,6 +5,7 @@ Image {
     id: ship
     property real universeX: 0                      // location of ship on the map
     property real universeY: 0                      // location of ship on the map
+
     property real thrust: 0                         // current speed gain (0 -> 1)
     property real engineSize: 1                     // how fast the ship will move upon full thrust
     property real directionInRadians: 0             // orientation of ship

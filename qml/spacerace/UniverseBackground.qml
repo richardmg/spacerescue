@@ -4,12 +4,14 @@ Item {
     id: universe
     property real cameraX: 0
     property real cameraY: 0
+
     property real universeX: 0
     property real universeY: 0
+    property real universeZ: 1
+
     property real windX: 0
     property real windY: 0
 
-    property real distance: 1
     property string bgimage: ""
 
     property real _halfWidth:  bg11.width / 2;
@@ -20,8 +22,9 @@ Item {
         universeX += windX;
         universeY += windY;
 
-        var posX = (cameraX + universeX) * distance;
-        var posY = (cameraY + universeY) * distance;
+        // Calculate from universe position to screen position:
+        var posX = (cameraX + universeX) * universeZ;
+        var posY = (cameraY + universeY) * universeZ;
         var tileX = Math.round((posX / bg11.width) - 0.5);
         var tileY = Math.round((posY / bg11.height) - 0.5);
 

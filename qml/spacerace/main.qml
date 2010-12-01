@@ -11,7 +11,7 @@ Rectangle {
         cameraX: ship.universeX
         cameraY: ship.universeY
         bgimage: "qrc:/space/img/frontstars.gif"
-        distance: 0.1
+        universeZ: 0.1
     }
 
     PlanetBackground {
@@ -21,7 +21,7 @@ Rectangle {
         universeX: 500
         universeY: 100
         bgimage: "qrc:/space/img/sun.png"
-        distance: 0.11
+        universeZ: 0.11
     }
 
     PlanetBackground {
@@ -31,7 +31,7 @@ Rectangle {
         universeX: -100
         universeY: 280
         bgimage: "qrc:/space/img/earth.png"
-        distance: 0.2
+        universeZ: 0.2
     }
 
     PlanetBackground {
@@ -41,7 +41,7 @@ Rectangle {
         universeX: 1200
         universeY: 600
         bgimage: "qrc:/space/img/moon.png"
-        distance: 0.3
+        universeZ: 0.3
     }
 
     UniverseBackground {
@@ -51,7 +51,7 @@ Rectangle {
         windX: 0.1
         windY: 0.1
         bgimage: "qrc:/space/img/universe.png"
-        distance: 3
+        universeZ: 3
     }
 
     Spaceship {
@@ -68,7 +68,15 @@ Rectangle {
         windX: 0.2
         windY: 0.2
         bgimage: "qrc:/space/img/universetop2.png"
-        distance: 8
+        universeZ: 8
+    }
+
+    SpaceDebris {
+        id: rock1
+        imageCount: 32
+        bgimage: "qrc:/space/img/rock1/rock100"
+        cameraX: ship.universeX
+        cameraY: ship.universeY
     }
 
     MouseArea {
@@ -92,6 +100,7 @@ Rectangle {
             bgMoon.gameStep();
             bgBlueFog.gameStep();
             bgGrayFog.gameStep();
+            rock1.gameStep();
         }
     }
 
