@@ -4,37 +4,36 @@ Item {
     id: universe
     property real cameraX: 0
     property real cameraY: 0
-    property real windx: 0
-    property real windy: 0
+    property real universeX: 0
+    property real universeY: 0
+    property real windX: 0
+    property real windY: 0
 
     property real distance: 1
     property string bgimage: ""
 
-    property real halfWidth:  bg11.width / 2;
-    property real halfHeight: bg11.height / 2;
+    property real _halfWidth:  bg11.width / 2;
+    property real _halfHeight: bg11.height / 2;
 
-    onCameraXChanged: updateUniverse();
-    Component.onCompleted: updateUniverse();
-
-    function updateUniverse()
+    function gameStep()
     {
            var posX = cameraX * distance;
            var posY = cameraY * distance;
            var tileX = Math.round((posX / bg11.width) - 0.5);
            var tileY = Math.round((posY / bg11.height) - 0.5);
 
-           var tmpx = (tileX * bg11.width)  + (halfWidth - posX);
-           var tmpy = (tileY * bg11.height) + (halfHeight - posY);
+           var tmpx = (tileX * bg11.width)  + (_halfWidth - posX);
+           var tmpy = (tileY * bg11.height) + (_halfHeight - posY);
 
-           bg11.x = tmpx - universe.halfWidth;
-           bg12.x = tmpx + universe.halfWidth;
-           bg21.x = tmpx - universe.halfWidth;
-           bg22.x = tmpx + universe.halfWidth;
+           bg11.x = tmpx - universe._halfWidth;
+           bg12.x = tmpx + universe._halfWidth;
+           bg21.x = tmpx - universe._halfWidth;
+           bg22.x = tmpx + universe._halfWidth;
 
-           bg11.y = -(tmpy - universe.halfHeight);
-           bg12.y = -(tmpy - universe.halfHeight);
-           bg21.y = -(tmpy + universe.halfHeight);
-           bg22.y = -(tmpy + universe.halfHeight);
+           bg11.y = -(tmpy - universe._halfHeight);
+           bg12.y = -(tmpy - universe._halfHeight);
+           bg21.y = -(tmpy + universe._halfHeight);
+           bg22.y = -(tmpy + universe._halfHeight);
     }
 
 

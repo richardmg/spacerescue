@@ -4,20 +4,17 @@ Item {
     id: universe
     property real cameraX
     property real cameraY
-    property real planetX
-    property real planetY
+    property real universeX
+    property real universeY
     property real distance: 1
     property string bgimage: ""
 
-    onCameraXChanged: updatePlanet();
-    Component.onCompleted: updatePlanet();
-
-    function updatePlanet()
+    function gameStep()
     {
         var posX = cameraX * distance;
         var posY = cameraY * distance;
-        planet.x = -(-planetX + posX + (width / 2));
-        planet.y = planetY + posY + (height / 2);
+        planet.x = -(-universeX + posX + (width / 2));
+        planet.y = universeY + posY + (height / 2);
     }
 
     Image {

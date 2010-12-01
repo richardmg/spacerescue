@@ -3,11 +3,11 @@ import SpaceDebris 1.0
 
 Image {
     id: ship
+    property real universeX: 0                  // location of ship on the map
+    property real universeY: 0                  // location of ship on the map
     property real thrust: 0                     // current speed gain (0 -> 1)
     property real engineSize: 10                // how fast the ship will move upon full thrust
     property real directionInRadians: 0         // orientation of ship
-    property real logicalPosX: 0                // location of ship on the map
-    property real logicalPosY: 0                // location of ship on the map
     property real wobble: 0                     // visual shaking of ship
 
     property real rotationNoThrust: 40          // x rotation where ship have no thrust
@@ -76,8 +76,8 @@ Image {
     {
         var moveX = thrust * engineSize * Math.sin(directionInRadians);
         var moveY = thrust * engineSize * Math.cos(directionInRadians);
-        logicalPosX += moveX;
-        logicalPosY += moveY;
+        universeX += moveX;
+        universeY += moveY;
     }
 
     function animateShip() {

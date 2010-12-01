@@ -7,46 +7,51 @@ Rectangle {
     color: "#000000"
 
     UniverseBackground {
-        cameraX: ship.logicalPosX
-        cameraY: ship.logicalPosY
+        id: bgStars
+        cameraX: ship.universeX
+        cameraY: ship.universeY
         bgimage: "qrc:/space/img/frontstars.gif"
         distance: 0.1
     }
 
     PlanetBackground {
-        cameraX: ship.logicalPosX
-        cameraY: ship.logicalPosY
-        planetX: 500
-        planetY: 100
+        id: bgSun
+        cameraX: ship.universeX
+        cameraY: ship.universeY
+        universeX: 500
+        universeY: 100
         bgimage: "qrc:/space/img/sun.png"
         distance: 0.11
     }
 
     PlanetBackground {
-        cameraX: ship.logicalPosX
-        cameraY: ship.logicalPosY
-        planetX: -100
-        planetY: 280
+        id: bgEarth
+        cameraX: ship.universeX
+        cameraY: ship.universeY
+        universeX: -100
+        universeY: 280
         bgimage: "qrc:/space/img/earth.png"
         distance: 0.2
     }
 
     PlanetBackground {
-        cameraX: ship.logicalPosX
-        cameraY: ship.logicalPosY
-        planetX: 1200
-        planetY: 600
+        id: bgMoon
+        cameraX: ship.universeX
+        cameraY: ship.universeY
+        universeX: 1200
+        universeY: 600
         bgimage: "qrc:/space/img/moon.png"
         distance: 0.3
     }
 
     UniverseBackground {
-        cameraX: ship.logicalPosX
-        cameraY: ship.logicalPosY
-        windx: 1
-        windy: 1
+        id: bgBlueFog
+        cameraX: ship.universeX
+        cameraY: ship.universeY
+        windX: 1
+        windY: 1
         bgimage: "qrc:/space/img/universe.png"
-        distance: 2
+        distance: 3
     }
 
     Spaceship {
@@ -57,12 +62,13 @@ Rectangle {
     }
 
     UniverseBackground {
-        cameraX: ship.logicalPosX
-        cameraY: ship.logicalPosY
-        windx: 2
-        windy: 2
+        id: bgGrayFog
+        cameraX: ship.universeX
+        cameraY: ship.universeY
+        windX: 2
+        windY: 2
         bgimage: "qrc:/space/img/universetop2.png"
-        distance: 10
+        distance: 8
     }
 
     MouseArea {
@@ -80,6 +86,12 @@ Rectangle {
 
         onTriggered: {
             ship.gameStep();
+            bgStars.gameStep();
+            bgSun.gameStep();
+            bgEarth.gameStep();
+            bgMoon.gameStep();
+            bgBlueFog.gameStep();
+            bgGrayFog.gameStep();
         }
     }
 
