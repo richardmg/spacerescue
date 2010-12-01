@@ -75,7 +75,7 @@ Rectangle {
         id: mousearea
         anchors.fill: parent
         hoverEnabled: true
-        onPositionChanged: ship.setGlobalDirection(mouse.x, mouse.y)
+        onPositionChanged: ship.setUniverseDirection(mouse.x, mouse.y)
     }
 
     Timer {

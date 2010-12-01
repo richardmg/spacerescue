@@ -33,7 +33,7 @@ Image {
         source: "qrc:/space/img/fire" + imgNr + ".png"
     }
 
-    function setGlobalDirection(x, y) {
+    function setUniverseDirection(x, y) {
         if (!ship.mouseControlled)
             return;
 
