@@ -4,5 +4,10 @@
         <file>img/fire2.gif</file>
         <file>img/spaceship1.gif</file>
         <file>img/trackmask.png</file>
+        <file>img/universe.gif</file>
+        <file>img/frontstars.gif</file>
+        <file>img/sun.gif</file>
+        <file>img/universe2.gif</file>
+        <file>img/universe2.png</file>
     </qresource>
 </RCC>

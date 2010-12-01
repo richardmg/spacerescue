@@ -4,16 +4,20 @@ Item {
     id: universe
     property real positionX
     property real positionY
+    property real distance: 1
+    property string bgimage: ""
 
     property real halfWidth:  bg11.width / 2;
     property real halfHeight: bg11.height / 2;
 
     onPositionXChanged: {
-        var tileX = Math.round((positionX / bg11.width) - 0.5);
-        var tileY = Math.round((positionY / bg11.height) - 0.5);
+        var posX = positionX * distance;
+        var posY = positionY * distance;
+        var tileX = Math.round((posX / bg11.width) - 0.5);
+        var tileY = Math.round((posY / bg11.height) - 0.5);
 
-        var tmpx = (tileX * bg11.width)  + (universe.halfWidth - universe.positionX);
-        var tmpy = (tileY * bg11.height) + (universe.halfHeight - universe.positionY);
+        var tmpx = (tileX * bg11.width)  + (halfWidth - posX);
+        var tmpy = (tileY * bg11.height) + (halfHeight - posY);
 
         bg11.x = tmpx - universe.halfWidth;
         bg12.x = tmpx + universe.halfWidth;
@@ -24,23 +28,22 @@ Item {
         bg12.y = -(tmpy - universe.halfHeight);
         bg21.y = -(tmpy + universe.halfHeight);
         bg22.y = -(tmpy + universe.halfHeight);
-
     }
 
     Image {
         id: bg11
-        source: "qrc:/space/img/trackmask.png"
+        source: bgimage
     }
     Image {
         id: bg12
-        source: "qrc:/space/img/trackmask.png"
+        source: bgimage
     }
     Image {
         id: bg21
-        source: "qrc:/space/img/trackmask.png"
+        source: bgimage
     }
     Image {
         id: bg22
-        source: "qrc:/space/img/trackmask.png"
+        source: bgimage
     }
 }

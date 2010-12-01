@@ -4,11 +4,27 @@ Rectangle {
     id: top
     width: 800
     height: 600
+    color: "#000000"
 
-    UniverseBackground {
-        id: universeBackground
+    PlanetBackground {
         positionX: ship.logicalPosX
         positionY: ship.logicalPosY
+        bgimage: "qrc:/space/img/sun.gif"
+        distance: 0.2
+    }
+
+    UniverseBackground {
+        positionX: ship.logicalPosX
+        positionY: ship.logicalPosY
+        bgimage: "qrc:/space/img/frontstars.gif"
+        distance: 0.3
+    }
+
+    UniverseBackground {
+        positionX: ship.logicalPosX
+        positionY: ship.logicalPosY
+        bgimage: "qrc:/space/img/universe2.png"
+        distance: 3
     }
 
     Spaceship {
