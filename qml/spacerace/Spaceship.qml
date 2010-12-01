@@ -30,7 +30,7 @@ Image {
         anchors.horizontalCenter: ship.horizontalCenter
         width: sourceSize.width * thrust * flipImage;
         height: sourceSize.height * thrust
-        source: "qrc:/space/img/fire" + imgNr + ".gif"
+        source: "qrc:/space/img/fire" + imgNr + ".png"
     }
 
     function setGlobalDirection(x, y) {

@@ -9,22 +9,22 @@ Rectangle {
     PlanetBackground {
         positionX: ship.logicalPosX
         positionY: ship.logicalPosY
-        bgimage: "qrc:/space/img/sun.gif"
-        distance: 0.2
+        bgimage: "qrc:/space/img/sun.png"
+        distance: 0.15
     }
 
     UniverseBackground {
         positionX: ship.logicalPosX
         positionY: ship.logicalPosY
         bgimage: "qrc:/space/img/frontstars.gif"
-        distance: 0.3
+        distance: 0.1
     }
 
     UniverseBackground {
         positionX: ship.logicalPosX
         positionY: ship.logicalPosY
-        bgimage: "qrc:/space/img/universe2.png"
-        distance: 3
+        bgimage: "qrc:/space/img/universe.png"
+        distance: 2
     }
 
     Spaceship {
@@ -32,6 +32,13 @@ Rectangle {
         x: top.width / 2
         y: top.height / 2
         mouseControlled: mousearea.pressed
+    }
+
+    UniverseBackground {
+        positionX: ship.logicalPosX
+        positionY: ship.logicalPosY
+        bgimage: "qrc:/space/img/universetop2.png"
+        distance: 6
     }
 
     MouseArea {
