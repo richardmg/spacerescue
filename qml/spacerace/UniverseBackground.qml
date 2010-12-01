@@ -17,23 +17,26 @@ Item {
 
     function gameStep()
     {
-           var posX = cameraX * distance;
-           var posY = cameraY * distance;
-           var tileX = Math.round((posX / bg11.width) - 0.5);
-           var tileY = Math.round((posY / bg11.height) - 0.5);
+        universeX += windX;
+        universeY += windY;
 
-           var tmpx = (tileX * bg11.width)  + (_halfWidth - posX);
-           var tmpy = (tileY * bg11.height) + (_halfHeight - posY);
+        var posX = (cameraX + universeX) * distance;
+        var posY = (cameraY + universeY) * distance;
+        var tileX = Math.round((posX / bg11.width) - 0.5);
+        var tileY = Math.round((posY / bg11.height) - 0.5);
 
-           bg11.x = tmpx - universe._halfWidth;
-           bg12.x = tmpx + universe._halfWidth;
-           bg21.x = tmpx - universe._halfWidth;
-           bg22.x = tmpx + universe._halfWidth;
+        var tmpx = (tileX * bg11.width)  + (_halfWidth - posX);
+        var tmpy = (tileY * bg11.height) + (_halfHeight - posY);
 
-           bg11.y = -(tmpy - universe._halfHeight);
-           bg12.y = -(tmpy - universe._halfHeight);
-           bg21.y = -(tmpy + universe._halfHeight);
-           bg22.y = -(tmpy + universe._halfHeight);
+        bg11.x = tmpx - universe._halfWidth;
+        bg12.x = tmpx + universe._halfWidth;
+        bg21.x = tmpx - universe._halfWidth;
+        bg22.x = tmpx + universe._halfWidth;
+
+        bg11.y = -(tmpy - universe._halfHeight);
+        bg12.y = -(tmpy - universe._halfHeight);
+        bg21.y = -(tmpy + universe._halfHeight);
+        bg22.y = -(tmpy + universe._halfHeight);
     }
 
 

@@ -48,8 +48,8 @@ Rectangle {
         id: bgBlueFog
         cameraX: ship.universeX
         cameraY: ship.universeY
-        windX: 1
-        windY: 1
+        windX: 0.1
+        windY: 0.1
         bgimage: "qrc:/space/img/universe.png"
         distance: 3
     }
@@ -65,8 +65,8 @@ Rectangle {
         id: bgGrayFog
         cameraX: ship.universeX
         cameraY: ship.universeY
-        windX: 2
-        windY: 2
+        windX: 0.2
+        windY: 0.2
         bgimage: "qrc:/space/img/universetop2.png"
         distance: 8
     }
