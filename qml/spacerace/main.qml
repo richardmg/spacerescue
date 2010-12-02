@@ -59,7 +59,7 @@ Rectangle {
         x: top.width / 2
         y: top.height / 2
         mouseControlled: mousearea.pressed
-        onUniverseXChanged: SharedScript.cameraX = universeX;
+        onUniverseXChanged: SharedScript.cameraX = universeX
         onUniverseYChanged: SharedScript.cameraY = universeY;
     }
 

@@ -1,5 +1,6 @@
 import Qt 4.7
 import SpaceDebris 1.0
+import "global.js" as SharedScript
 
 Image {
     id: ship
@@ -81,6 +82,8 @@ Image {
     {
         var sx = _speedX + (thrust * engineSize * Math.sin(directionInRadians));
         var sy = _speedY - (thrust * engineSize * Math.cos(directionInRadians));
+//        var sx = (thrust*3 * engineSize * Math.sin(directionInRadians));
+//        var sy = - (thrust*3 * engineSize * Math.cos(directionInRadians));
         if (sx > _speedMaxX) sx = _speedMaxX;
         else if (sx < -_speedMaxX) sx = -_speedMaxX;
         if (sy > _speedMaxY) sy = _speedMaxY;
@@ -90,6 +93,9 @@ Image {
 
         universeX += _speedX;
         universeY += _speedY;
+
+        SharedScript.shipCollisionCenterX = universeX + (ship.width / 2);
+        SharedScript.shipCollisionCenterY = universeY + (ship.height / 2);
     }
 
     function animateShip() {
@@ -105,4 +111,14 @@ Image {
         animateShip();
         moveShip();
     }
+
+    //    Rectangle {
+    //        id: collisionBounding
+    //        color: "red"
+    //        opacity: 0.4
+    //        width:  2 * SharedScript._shipCollisionRadius
+    //        height: 2 * SharedScript._shipCollisionRadius
+    //        anchors.centerIn: parent
+    //    }
+
 }

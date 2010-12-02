@@ -1,5 +1,5 @@
 import Qt 4.7
-import "track.js" as SharedScript
+import "global.js" as SharedScript
 
 Item {
     property real universeX: 0
