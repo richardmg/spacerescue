@@ -9,10 +9,10 @@ Item {
     property real universeY: 0
     property real universeZ: 1
 
-    property real universeWidth: 1000
-    property real universeHeight: 1000
+    property real universeWidth: screenWidth * 2
+    property real universeHeight: screenHeight * 2
     property real screenWidth: 800
-    property real screenHeight: 600
+    property real screenHeight: 400
 
     property string bgimage: "" // without number and extension
     property int imageCount: 1
@@ -23,8 +23,8 @@ Item {
 
     property real _speedX: 0
     property real _speedY: 0
-    property real _speedMaxX: 0.5
-    property real _speedMaxY: 0.5
+    property real _speedMaxX: 1
+    property real _speedMaxY: 1
 
     Component.onCompleted: {
         placeDebrisOnRandomUniverseBorder();
@@ -32,10 +32,12 @@ Item {
 
     function placeDebrisOnRandomUniverseBorder()
     {
-        universeX = cameraX + (0.1 > 0.5 ? -universeWidth / 2 : universeWidth / 2);
+        var leftSide = Math.random() > 0.5;
+        universeX = cameraX + (leftSide ? -universeWidth / 2 : universeWidth / 2);
         universeY = (cameraY - (universeHeight / 2)) + (Math.random() * universeHeight);
-        _speedX = (0.3 + (Math.random() * 0.7)) * _speedMaxX;
-        _speedY = (0.3 + (Math.random() * 0.7)) * _speedMaxY;
+
+        _speedX = (0.4 + (Math.random() * 0.6)) * _speedMaxX * (leftSide ? 1 : -1);
+        _speedY = (0.4 + (Math.random() * 0.6)) * _speedMaxY * ((Math.random() > 0.5) ? 1 : -1);
     }
 
     function gameStep()
@@ -43,11 +45,13 @@ Item {
         universeX += _speedX;
         universeY += _speedY;
 
-        console.debug(universeX + ", " + universeY);
-//        if (universeX < cameraX + _halfUniverseWidth) universeX = cameraX + _halfUniverseWidth;
-//        else if (universeX > cameraX + _halfUniverseWidth) universeX = cameraX - _halfUniverseWidth;
-//        if (universeY < cameraY + _halfUniverseHeight) universeY = cameraY + _halfUniverseHeight;
-//        else if (universeY > cameraY + _halfUniverseHeight) universeY = cameraY - _halfUniverseHeight;
+        var distX = cameraX - universeX;
+        if (Math.abs(distX) > _halfUniverseWidth)
+            universeX = cameraX + (_halfUniverseWidth * ((distX > 0) ? 1 : -1));
+
+        var distY = cameraY - universeY;
+        if (Math.abs(distY) > _halfUniverseHeight)
+            universeY = cameraY + (_halfUniverseHeight * ((distY > 0) ? 1 : -1));
 
         var nr = _currentImageNr + 1;
         if (nr > imageCount -1 ) nr = 0;
@@ -57,7 +61,7 @@ Item {
         // Calculate from universe position to screen position:
         var posX = cameraX * universeZ;
         var posY = cameraY * universeZ;
-        debris.x = -universeX + posX + (screenWidth / 2);
+        debris.x = universeX - posX + (screenWidth / 2);
         debris.y = -universeY + posY + (screenHeight / 2);
     }
 

@@ -17,8 +17,8 @@ Image {
     property real _directionAtMaxBank: Math.PI/9    // orientation of ship at _rotationMaxBank
     property real _speedX: 0                        // current speed along x-axis
     property real _speedY: 0                        // current speed along y-axis
-    property real _speedMaxX: 10                    // abs(_speedX) <=_speedMaxX
-    property real _speedMaxY: 10                    // abs(_speedY) <=_speedMaxY
+    property real _speedMaxX: 7                     // abs(_speedX) <=_speedMaxX
+    property real _speedMaxY: 7                     // abs(_speedY) <=_speedMaxY
     property real _wobble: 0                        // visual shaking of ship
 
     rotation: (180 * directionInRadians / Math.PI)// + ((thrust == 1) ? _wobble : 0);
