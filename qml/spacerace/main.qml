@@ -73,6 +73,7 @@ Rectangle {
 
     SpaceDebrisContainer {
         id: debris
+        ship: ship
     }
 
     MouseArea {

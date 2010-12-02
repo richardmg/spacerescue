@@ -26,6 +26,7 @@ Image {
     rotation: (180 * directionInRadians / Math.PI)// + ((thrust == 1) ? _wobble : 0);
     source: "qrc:/space/img/spaceship1.gif"
 
+    Component.onCompleted: SharedScript.ship = this;
     Image {
         id: fire
         property int imgNr: 1
@@ -105,6 +106,19 @@ Image {
         fire.opacity = 0.4 + (0.6 * Math.random());
         ship._wobble = -3 + (3 * Math.random());
         fire.flipImage = Math.random() > 0.5 ? 1 : -1;
+    }
+
+    function collideWithDebris()
+    {
+        var newMax = 1
+        var sx = _speedX;
+        var sy = _speedY;
+        if (sx > newMax) sx = newMax;
+        else if (sx < -newMax) sx = -newMax;
+        if (sy > newMax) sy = newMax;
+        else if (sy < -newMax) sy = -newMax;
+        _speedX = sx
+        _speedY = sy
     }
 
     function gameStep() {

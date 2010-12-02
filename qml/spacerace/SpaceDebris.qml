@@ -17,6 +17,8 @@ Item {
     property real _speedMaxX: 1
     property real _speedMaxY: 1
 
+    property variant ship
+
     width:  debris.width
     height: debris.height
 
@@ -33,8 +35,8 @@ Item {
 
     function gameStep()
     {
-//        universeX += _speedX;
-//        universeY += _speedY;
+        universeX += _speedX;
+        universeY += _speedY;
 
         var half_ww = (SharedScript.screenWidth * warpAreaMultiplier) / 2;
         var half_wh = (SharedScript.screenHeight * warpAreaMultiplier) / 2;
@@ -53,19 +55,11 @@ Item {
         debris.source = bgimage + _currentImageNr + ".png";
 
         SharedScript.updateScreenPositionFor(this);
-        collisionBounding.visible = SharedScript.collidesWithShip(this, width/3, 0, 0);
+        if (SharedScript.collidesWithShip(this, width/3, 0, 0))
+            ship.collideWithDebris();
     }
 
     Image {
         id: debris
     }
-
-    Rectangle {
-        id: collisionBounding
-        color: "red"
-        anchors.fill: debris
-        opacity: 0.4
-//        Component.onCompleted: SharedScript.sizeItemToCollisionArea(collisionBounding, 40, 30, 30);
-    }
-
 }
