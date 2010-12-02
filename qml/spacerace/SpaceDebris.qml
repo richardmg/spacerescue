@@ -7,7 +7,9 @@ Item {
     property real universeY: 0
     property real universeZ: 1
 
-    property real warpAreaMultiplier: 2
+    property real warpWidth: 2000
+    property real warpHeight: 2000
+
     property string bgimage: "" // without number and extension
     property int imageCount: 1
     property int _currentImageNr: 1
@@ -23,11 +25,8 @@ Item {
     height: debris.height
 
     Component.onCompleted: {
-        var ww = SharedScript.screenWidth * warpAreaMultiplier
-        var wh = SharedScript.screenHeight * warpAreaMultiplier
-
-        universeX = SharedScript.cameraX - (ww / 2) + (Math.random() * ww);
-        universeY = SharedScript.cameraY - (wh / 2) + (Math.random() * wh);
+        universeX = SharedScript.cameraX - (warpWidth / 2) + (Math.random() * warpWidth);
+        universeY = SharedScript.cameraY - (warpHeight / 2) + (Math.random() * warpHeight);
 
         _speedX = (0.4 + (Math.random() * 0.6)) * _speedMaxX
         _speedY = (0.4 + (Math.random() * 0.6)) * _speedMaxY * ((Math.random() > 0.5) ? 1 : -1);
@@ -38,9 +37,8 @@ Item {
         universeX += _speedX;
         universeY += _speedY;
 
-        var half_ww = (SharedScript.screenWidth * warpAreaMultiplier) / 2;
-        var half_wh = (SharedScript.screenHeight * warpAreaMultiplier) / 2;
-
+        var half_ww = warpWidth / 2;
+        var half_wh = warpHeight / 2;
         var distX = SharedScript.cameraX - universeX;
         if (Math.abs(distX) > half_ww)
             universeX = SharedScript.cameraX + (half_ww * ((distX > 0) ? 1 : -1));

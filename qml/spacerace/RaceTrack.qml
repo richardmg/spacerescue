@@ -18,7 +18,7 @@ Item {
         // Create all gates:
         var gateComponent = Qt.createComponent("PlanetBackground.qml");
         if (gateComponent.status == Component.Ready) {
-            for (var i=0; i<1; ++i) {
+            for (var i=0; i<0; ++i) {
                 var gate = gateComponent.createObject(parent);
                 gate.bgimage = "qrc:/space/img/moon.png";
                 gate.x = universeX + (i * 20);

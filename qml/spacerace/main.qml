@@ -3,14 +3,11 @@ import "global.js" as SharedScript
 
 Rectangle {
     id: top
-    width: 800
-    height: 600
     color: "#000000"
-
-    Component.onCompleted: {
-        SharedScript.screenWidth = top.width;
-        SharedScript.screenHeight = top.height;
-    }
+    width: 100
+    height: 100
+    onWidthChanged: SharedScript.screenWidth = width;
+    onHeightChanged: SharedScript.screenHeight = height;
 
     UniverseBackground {
         id: bgStars
