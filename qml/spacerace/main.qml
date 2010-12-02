@@ -1,7 +1,5 @@
 import Qt 4.7
 
-    var debris = [];
-
 Rectangle {
     id: top
     width: 800
@@ -58,7 +56,7 @@ Rectangle {
 
     Spaceship {
         id: ship
-        x: p.width / 2
+        x: top.width / 2
         y: top.height / 2
         mouseControlled: mousearea.pressed
     }
@@ -73,18 +71,18 @@ Rectangle {
         universeZ: 6
     }
 
-    Repeater {
-        model: 10
+//    Repeater {
+//        model: 10
         SpaceDebris {
+            id: rock1
             imageCount: 32
             bgimage: "qrc:/space/img/rock1/rock100"
             cameraX: ship.universeX
             cameraY: ship.universeY
             screenWidth: parent.width
             screenHeight: parent.height
-            Component.onCompleted: debris.push(self);
         }
-    }
+//    }
 
     MouseArea {
         id: mousearea
@@ -107,7 +105,7 @@ Rectangle {
             bgMoon.gameStep();
             bgBlueFog.gameStep();
             bgGrayFog.gameStep();
-//            rock1.gameStep();
+            rock1.gameStep();
         }
     }
 
