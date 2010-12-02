@@ -131,7 +131,7 @@ Image {
             return;
 
         ship.isColliding = true;
-        directionInRadians += Math.PI;
+        directionInRadians += Math.PI/2;
         _speedX = (_speedX + _speedY) * Math.sin(directionInRadians);
         _speedY = (_speedX + _speedY) * Math.cos(directionInRadians);
         thrust = 0;
