@@ -71,14 +71,9 @@ Rectangle {
         universeZ: 6
     }
 
-//    Repeater {
-//        model: 10
-        SpaceDebris {
-            id: rock1
-            imageCount: 32
-            bgimage: "qrc:/space/img/rock1/rock100"
-        }
-//    }
+    SpaceDebrisContainer {
+        id: debris
+    }
 
     MouseArea {
         id: mousearea
@@ -101,7 +96,7 @@ Rectangle {
             bgMoon.gameStep();
             bgBlueFog.gameStep();
             bgGrayFog.gameStep();
-            rock1.gameStep();
+            debris.gameStep();
             raceTrack.gameStep();
         }
     }

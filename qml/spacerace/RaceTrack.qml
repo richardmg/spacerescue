@@ -2,10 +2,6 @@ import Qt 4.7
 import "track.js" as SharedScript
 
 Item {
-    id: trackTop
-    x: 200
-    y: 200
-
     property real universeX: 0
     property real universeY: 0
     property real universeZ: 1

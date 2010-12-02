@@ -18,19 +18,13 @@ Item {
     property real _speedMaxY: 1
 
     Component.onCompleted: {
-        placeDebrisOnRandomUniverseBorder();
-    }
-
-    function placeDebrisOnRandomUniverseBorder()
-    {
         var ww = SharedScript.screenWidth * warpAreaMultiplier
         var wh = SharedScript.screenHeight * warpAreaMultiplier
-        var leftSide = Math.random() > 0.5;
 
-        universeX = SharedScript.cameraX + (leftSide ? -ww / 2 : wh / 2);
-        universeY = (SharedScript.cameraY - (wh / 2)) + (Math.random() * wh);
+        universeX = SharedScript.cameraX - (ww / 2) + (Math.random() * ww);
+        universeY = SharedScript.cameraY - (wh / 2) + (Math.random() * wh);
 
-        _speedX = (0.4 + (Math.random() * 0.6)) * _speedMaxX * (leftSide ? 1 : -1);
+        _speedX = (0.4 + (Math.random() * 0.6)) * _speedMaxX
         _speedY = (0.4 + (Math.random() * 0.6)) * _speedMaxY * ((Math.random() > 0.5) ? 1 : -1);
     }
 

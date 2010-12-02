@@ -6,6 +6,7 @@ var screenWidth = 0;
 var screenHeight = 0;
 
 var gateArray = [];
+var debrisArray = [];
 
 function updateScreenPositionFor(targetItem)
 {
