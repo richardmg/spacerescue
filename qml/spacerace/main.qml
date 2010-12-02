@@ -1,4 +1,5 @@
 import Qt 4.7
+import "global.js" as SharedScript
 
 Rectangle {
     id: top
@@ -6,18 +7,19 @@ Rectangle {
     height: 600
     color: "#000000"
 
+    Component.onCompleted: {
+        SharedScript.screenWidth = top.width;
+        SharedScript.screenHeight = top.height;
+    }
+
     UniverseBackground {
         id: bgStars
-        cameraX: ship.universeX
-        cameraY: ship.universeY
         bgimage: "qrc:/space/img/frontstars.gif"
         universeZ: 0.1
     }
 
     PlanetBackground {
         id: bgSun
-        cameraX: ship.universeX
-        cameraY: ship.universeY
         universeX: 500
         universeY: 100
         bgimage: "qrc:/space/img/sun.png"
@@ -26,8 +28,6 @@ Rectangle {
 
     PlanetBackground {
         id: bgEarth
-        cameraX: ship.universeX
-        cameraY: ship.universeY
         universeX: -100
         universeY: 280
         bgimage: "qrc:/space/img/earth.png"
@@ -36,22 +36,22 @@ Rectangle {
 
     PlanetBackground {
         id: bgMoon
-        cameraX: ship.universeX
-        cameraY: ship.universeY
-        universeX: 1200
-        universeY: 600
+        universeX: 0//1200
+        universeY: 0//600
         bgimage: "qrc:/space/img/moon.png"
         universeZ: 0.3
     }
 
     UniverseBackground {
         id: bgBlueFog
-        cameraX: ship.universeX
-        cameraY: ship.universeY
         windX: 0.1
         windY: 0.1
         bgimage: "qrc:/space/img/universe.png"
         universeZ: 3
+    }
+
+    RaceTrack {
+        id: raceTrack
     }
 
     Spaceship {
@@ -59,12 +59,12 @@ Rectangle {
         x: top.width / 2
         y: top.height / 2
         mouseControlled: mousearea.pressed
+        onUniverseXChanged: SharedScript.cameraX = universeX;
+        onUniverseYChanged: SharedScript.cameraY = universeY;
     }
 
     UniverseBackground {
         id: bgGrayFog
-        cameraX: ship.universeX
-        cameraY: ship.universeY
         windX: 0.2
         windY: 0.2
         bgimage: "qrc:/space/img/universetop2.png"
@@ -77,10 +77,6 @@ Rectangle {
             id: rock1
             imageCount: 32
             bgimage: "qrc:/space/img/rock1/rock100"
-            cameraX: ship.universeX
-            cameraY: ship.universeY
-            screenWidth: parent.width
-            screenHeight: parent.height
         }
 //    }
 
@@ -106,6 +102,7 @@ Rectangle {
             bgBlueFog.gameStep();
             bgGrayFog.gameStep();
             rock1.gameStep();
+            raceTrack.gameStep();
         }
     }
 

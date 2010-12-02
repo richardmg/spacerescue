@@ -5,6 +5,7 @@ Image {
     id: ship
     property real universeX: 0                      // location of ship on the map
     property real universeY: 0                      // location of ship on the map
+    property real universez: 1                      // location of ship on the map
 
     property real thrust: 0                         // current speed gain (0 -> 1)
     property real engineSize: 1                     // how fast the ship will move upon full thrust
@@ -79,7 +80,7 @@ Image {
     function moveShip()
     {
         var sx = _speedX + (thrust * engineSize * Math.sin(directionInRadians));
-        var sy = _speedY + (thrust * engineSize * Math.cos(directionInRadians));
+        var sy = _speedY - (thrust * engineSize * Math.cos(directionInRadians));
         if (sx > _speedMaxX) sx = _speedMaxX;
         else if (sx < -_speedMaxX) sx = -_speedMaxX;
         if (sy > _speedMaxY) sy = _speedMaxY;

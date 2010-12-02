@@ -1,10 +1,7 @@
 import Qt 4.7
+import "global.js" as SharedScript
 
 Item {
-    id: universe
-    property real cameraX: 0
-    property real cameraY: 0
-
     property real universeX: 0
     property real universeY: 0
     property real universeZ: 1
@@ -23,25 +20,24 @@ Item {
         universeY += windY;
 
         // Calculate from universe position to screen position:
-        var posX = (cameraX + universeX) * universeZ;
-        var posY = (cameraY + universeY) * universeZ;
+        var posX = (SharedScript.cameraX + universeX) * universeZ;
+        var posY = (SharedScript.cameraY + universeY) * universeZ;
         var tileX = Math.round((posX / bg11.width) - 0.5);
         var tileY = Math.round((posY / bg11.height) - 0.5);
 
         var tmpx = (tileX * bg11.width)  + (_halfWidth - posX);
-        var tmpy = (tileY * bg11.height) + (_halfHeight - posY);
+        var tmpy = -((tileY * bg11.height) + (_halfHeight - posY));
 
-        bg11.x = tmpx - universe._halfWidth;
-        bg12.x = tmpx + universe._halfWidth;
-        bg21.x = tmpx - universe._halfWidth;
-        bg22.x = tmpx + universe._halfWidth;
+        bg11.x = tmpx - _halfWidth;
+        bg12.x = tmpx + _halfWidth;
+        bg21.x = tmpx - _halfWidth;
+        bg22.x = tmpx + _halfWidth;
 
-        bg11.y = -(tmpy - universe._halfHeight);
-        bg12.y = -(tmpy - universe._halfHeight);
-        bg21.y = -(tmpy + universe._halfHeight);
-        bg22.y = -(tmpy + universe._halfHeight);
+        bg11.y = -(tmpy - _halfHeight);
+        bg12.y = -(tmpy - _halfHeight);
+        bg21.y = -(tmpy + _halfHeight);
+        bg22.y = -(tmpy + _halfHeight);
     }
-
 
     Image {
         id: bg11
