@@ -23,6 +23,16 @@ Image {
     property real _speedMaxY: 7                     // abs(_speedY) <=_speedMaxY
     property real _wobble: 0                        // visual shaking of ship
 
+    property bool isColliding: false;
+
+    Behavior on directionInRadians {
+        enabled: ship.isColliding;
+        SequentialAnimation {
+            PropertyAnimation {}
+            PropertyAction { target: ship; property: "isColliding"; value: "false" }
+        }
+    }
+
     rotation: (180 * directionInRadians / Math.PI)// + ((thrust == 1) ? _wobble : 0);
     source: "qrc:/space/img/spaceship1.gif"
 
@@ -41,7 +51,7 @@ Image {
     }
 
     function setUniverseDirection(x, y) {
-        if (!ship.mouseControlled)
+        if (!ship.mouseControlled || ship.isColliding)
             return;
 
         var halfShipHeight = ship.height / 2;
@@ -64,6 +74,8 @@ Image {
         enabled: ship.mouseControlled == false;
 
         onRotationXChanged: {
+            if (ship.isColliding)
+                return;
             var thrustRange = ship._rotationFullThrust - ship._rotationNoThrust;
             var t = ((rotationX - ship._rotationNoThrust) / thrustRange);
             if (t < 0) t = 0;
@@ -72,7 +84,12 @@ Image {
         }
 
         onRotationYChanged: {
+            if (ship.isColliding)
+                return;
+//            if (Math.abs(rotationY) < 5)
+//                return;
             var r = rotationY / ship._rotationMaxBank;
+//            var r = ((rotationY > 0) ? 1 : -1);
             if (r < -1) r = -1;
             if (r >  1) r =  1;
             directionInRadians += r * _directionAtMaxBank;
@@ -110,15 +127,14 @@ Image {
 
     function collideWithDebris()
     {
-        var newMax = 1
-        var sx = _speedX;
-        var sy = _speedY;
-        if (sx > newMax) sx = newMax;
-        else if (sx < -newMax) sx = -newMax;
-        if (sy > newMax) sy = newMax;
-        else if (sy < -newMax) sy = -newMax;
-        _speedX = sx
-        _speedY = sy
+        if (ship.isColliding)
+            return;
+
+        ship.isColliding = true;
+        directionInRadians += Math.PI;
+        _speedX = _speedX * Math.sin(directionInRadians) / 2;
+        _speedY = _speedY * Math.cos(directionInRadians) / 2;
+        thrust = 0;
     }
 
     function gameStep() {

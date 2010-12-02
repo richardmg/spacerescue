@@ -55,7 +55,8 @@ Item {
         debris.source = bgimage + _currentImageNr + ".png";
 
         SharedScript.updateScreenPositionFor(this);
-        if (SharedScript.collidesWithShip(this, width/3, 0, 0))
+
+        if (!ship.inCollision && SharedScript.collidesWithShip(this, width/3, 0, 0))
             ship.collideWithDebris();
     }
 
