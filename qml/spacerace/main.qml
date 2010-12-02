@@ -20,26 +20,26 @@ Rectangle {
 
     PlanetBackground {
         id: bgSun
-        universeX: 500
-        universeY: 100
+        universeX: 300
+        universeY: -200
         bgimage: "qrc:/space/img/sun.png"
         universeZ: 0.11
     }
 
     PlanetBackground {
         id: bgEarth
-        universeX: -100
-        universeY: 280
+        universeX: -300
+        universeY: 200
         bgimage: "qrc:/space/img/earth.png"
         universeZ: 0.2
     }
 
     PlanetBackground {
         id: bgMoon
-        universeX: 0//1200
-        universeY: 0//600
+        universeX: 550
+        universeY: 350
         bgimage: "qrc:/space/img/moon.png"
-        universeZ: 0.3
+        universeZ: 0.25
     }
 
     UniverseBackground {
