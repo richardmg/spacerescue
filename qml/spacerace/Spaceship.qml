@@ -137,11 +137,6 @@ Image {
         thrust = 0;
     }
 
-    function collideWithAstronaut()
-    {
-        console.debug("YIHAA");
-    }
-
     function resetCollision()
     {
         if (ship.collisionTime + 25 < SharedScript.gameTime)
@@ -155,4 +150,8 @@ Image {
             resetCollision();
     }
 
+    function reset()
+    {
+
+    }
 }

@@ -44,5 +44,6 @@
         <file>img/astronaut0.png</file>
         <file>img/arrow.png</file>
         <file>img/astronaut1.png</file>
+        <file>img/menu.png</file>
     </qresource>
 </RCC>

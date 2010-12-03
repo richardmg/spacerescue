@@ -6,8 +6,8 @@ Rectangle {
     color: "#000000"
     width: 480
     height: 800
-    onWidthChanged: { SharedScript.screenWidth = width; debris.placeDebris(); }
-    onHeightChanged: { SharedScript.screenHeight = height; debris.placeDebris(); }
+    onWidthChanged: { SharedScript.screenWidth = width; debris.reset(); }
+    onHeightChanged: { SharedScript.screenHeight = height; debris.reset(); }
     focus: true
 
     UniverseBackground {
@@ -50,11 +50,9 @@ Rectangle {
 
     Astronaut {
         id: astronaut
-        universeX: SharedScript.distanteToAstronaut
-        universeY: 0
         ship: ship
-        universeZ: 1
-    }
+        root: top
+     }
 
     Spaceship {
         id: ship
@@ -96,6 +94,11 @@ Rectangle {
         onPositionChanged: ship.setUniverseDirection(mouse.x, mouse.y)
     }
 
+    Menu {
+        id: menu
+        root: top
+    }
+
     Keys.onPressed: {
         Qt.quit()
     }
@@ -125,4 +128,18 @@ Rectangle {
         }
     }
 
+    function newGame()
+    {
+        SharedScript.gameTime = 0;
+        ship.reset();
+        debris.reset();
+        astronaut.reset();
+        rescueTimer.reset();
+        menu.opacity = 0;
+    }
+
+    function endGame()
+    {
+        menu.opacity = 1;
+    }
 }

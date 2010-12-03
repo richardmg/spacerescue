@@ -13,11 +13,11 @@ Item {
         }
     }
 
-    function placeDebris()
+    function reset()
     {
         for (var i=0; i<SharedScript.debrisArray.length; ++i) {
             var debris = SharedScript.debrisArray[i];
-            debris.placeDebris();
+            debris.reset();
         }
     }
 

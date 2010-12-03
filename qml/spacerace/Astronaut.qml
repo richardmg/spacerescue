@@ -2,7 +2,7 @@ import Qt 4.7
 import "global.js" as SharedScript
 
 Item {
-    property real universeX: 0
+    property real universeX: SharedScript.distancteToAstronaut
     property real universeY: 0
     property real universeZ: 1
 
@@ -14,7 +14,8 @@ Item {
     property int imageSpeed: 20
     property int _currentImageNr: SharedScript.random.next() * imageCount
 
-    property variant ship
+    property Item ship
+    property Item root
 
     width:  astronaut.width
     height: astronaut.height
@@ -40,8 +41,14 @@ Item {
 
         if (SharedScript.collidesWithShip(this, width/2, 0, 0)) {
             opacity = 0
-            ship.collideWithAstronaut();
+            root.endGame();
         }
+    }
+
+    function reset()
+    {
+        universeX = SharedScript.distancteToAstronaut;
+        opacity = 1;
     }
 
     Image {
