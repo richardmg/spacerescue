@@ -9,8 +9,9 @@ Item {
     property real speedX: 3
     property real speedY: 0
 
-    property string bgimage: "" // without number and extension
-    property int imageCount: 1
+    property string bgimage: "qrc:/space/img/astronaut"
+    property int imageCount: 2
+    property int imageSpeed: 20
     property int _currentImageNr: Math.random() * imageCount
 
     property variant ship
@@ -24,16 +25,17 @@ Item {
         }
     }
 
-    function gameStep()
+    function gameStep(time)
     {
         universeX += speedX;
         universeY += speedY;
 
-        var nr = _currentImageNr + 1;
-        if (nr > imageCount -1 ) nr = 0;
-        _currentImageNr = nr;
-        astronaut.source = bgimage + _currentImageNr + ".png";
-
+        if ((time % imageSpeed) == 0) {
+            var nr = _currentImageNr + 1;
+            if (nr > imageCount -1 ) nr = 0;
+            _currentImageNr = nr;
+            astronaut.source = bgimage + _currentImageNr + ".png";
+        }
         SharedScript.updateScreenPositionFor(this);
 
         if (SharedScript.collidesWithShip(this, width/2, 0, 0)) {

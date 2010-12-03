@@ -52,7 +52,6 @@ Rectangle {
         id: astronaut
         universeX: SharedScript.distanteToAstronaut
         universeY: 0
-        bgimage: "qrc:/space/img/astronaut"
         ship: ship
         universeZ: 1
     }
@@ -100,18 +99,20 @@ Rectangle {
         interval: 50;
         running: true;
         repeat: true
+        property int time: 0
 
         onTriggered: {
-            ship.gameStep();
-            bgStars.gameStep();
-            bgSun.gameStep();
-            bgEarth.gameStep();
-            bgMoon.gameStep();
-            bgBlueFog.gameStep();
-            bgGrayFog.gameStep();
-            debris.gameStep();
-            astronaut.gameStep();
-            indicator.gameStep();
+            ship.gameStep(time);
+            bgStars.gameStep(time);
+            bgSun.gameStep(time);
+            bgEarth.gameStep(time);
+            bgMoon.gameStep(time);
+            bgBlueFog.gameStep(time);
+            bgGrayFog.gameStep(time);
+            debris.gameStep(time);
+            astronaut.gameStep(time);
+            indicator.gameStep(time);
+            if (++time == Number.MAX_VALUE) time = 0;
         }
     }
 

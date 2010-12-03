@@ -12,6 +12,7 @@ Item {
 
     property string bgimage: "" // without number and extension
     property int imageCount: 1
+    property int imageSpeed: 1
     property int _currentImageNr: Math.random() * imageCount
 
     property real _speedX: 0
@@ -36,7 +37,7 @@ Item {
         _speedY = (0.4 + (Math.random() * 0.6)) * _speedMaxY * ((Math.random(1) > 0.5) ? 1 : -1);
     }
 
-    function gameStep()
+    function gameStep(time)
     {
         universeX += _speedX;
         universeY += _speedY;
@@ -61,11 +62,12 @@ Item {
         if (Math.abs(distY) > half_wh)
             universeY = SharedScript.cameraY + (half_wh * ((distY > 0) ? 1 : -1));
 
-        var nr = _currentImageNr + 1;
-        if (nr > imageCount -1 ) nr = 0;
-        _currentImageNr = nr;
-        debris.source = bgimage + _currentImageNr + ".png";
-
+        if ((time % imageSpeed) == 0) {
+            var nr = _currentImageNr + 1;
+            if (nr > imageCount -1 ) nr = 0;
+            _currentImageNr = nr;
+            debris.source = bgimage + _currentImageNr + ".png";
+        }
         SharedScript.updateScreenPositionFor(this);
 
         if (!ship.inCollision && SharedScript.collidesWithShip(this, width/3, 0, 0))

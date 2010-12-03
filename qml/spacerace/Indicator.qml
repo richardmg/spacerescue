@@ -38,7 +38,9 @@ Image {
 
         if (visibleOnlyWhenOutsideScreen && newX == onTargetX && newY == onTargetY)
             opacity = 0;
-        else
+        else if (target.opacity != 0)
             opacity = 1;
+        else
+            opacity = 0;
     }
 }
