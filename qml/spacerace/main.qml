@@ -83,6 +83,12 @@ Rectangle {
         target: astronaut
     }
 
+    RescueTimer {
+        id: rescueTimer
+        x: 10
+        y: 10
+    }
+
     MouseArea {
         id: mousearea
         anchors.fill: parent
@@ -111,6 +117,7 @@ Rectangle {
             debris.gameStep();
             astronaut.gameStep();
             indicator.gameStep();
+            rescueTimer.gameStep();
 
             ++SharedScript.gameTime;
             if (SharedScript.gameTime == Number.MAX_VALUE)
