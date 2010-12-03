@@ -137,18 +137,14 @@ Image {
         thrust = 0;
     }
 
+    function collideWithAstronaut()
+    {
+        console.debug("YIHAA");
+    }
+
     function gameStep() {
         animateShip();
         moveShip();
     }
-
-    //    Rectangle {
-    //        id: collisionBounding
-    //        color: "red"
-    //        opacity: 0.4
-    //        width:  2 * SharedScript._shipCollisionRadius
-    //        height: 2 * SharedScript._shipCollisionRadius
-    //        anchors.centerIn: parent
-    //    }
 
 }

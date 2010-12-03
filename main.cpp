@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockLandscape);
     viewer.setResizeMode(QmlApplicationViewer::SizeRootObjectToView);
     viewer.setMainQmlFile(QLatin1String("qml/spacerace/main.qml"));
+//    viewer.showNormal();
     viewer.showFullScreen();
 
     return app.exec();

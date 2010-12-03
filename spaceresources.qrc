@@ -41,6 +41,7 @@
         <file>img/rock1/rock10029.png</file>
         <file>img/rock1/rock10030.png</file>
         <file>img/rock1/rock10031.png</file>
-        <file>img/astronaut.png</file>
+        <file>img/astronaut0.png</file>
+        <file>img/arrow.png</file>
     </qresource>
 </RCC>

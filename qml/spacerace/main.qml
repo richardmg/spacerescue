@@ -4,10 +4,11 @@ import "global.js" as SharedScript
 Rectangle {
     id: top
     color: "#000000"
-    width: 100
-    height: 100
+    width: 480
+    height: 800
     onWidthChanged: { SharedScript.screenWidth = width; debris.placeDebris(); }
     onHeightChanged: { SharedScript.screenHeight = height; debris.placeDebris(); }
+    focus: true
 
     UniverseBackground {
         id: bgStars
@@ -39,20 +40,21 @@ Rectangle {
         universeZ: 0.25
     }
 
-    PlanetBackground {
-        id: astronaut
-        universeX: SharedScript.distanteToAstronaut
-        universeY: 0
-        bgimage: "qrc:/space/img/astronaut.png"
-        universeZ: 1
-    }
-
     UniverseBackground {
         id: bgBlueFog
         windX: 0.1
         windY: 0.1
         bgimage: "qrc:/space/img/universe.png"
         universeZ: 3
+    }
+
+    Astronaut {
+        id: astronaut
+        universeX: SharedScript.distanteToAstronaut
+        universeY: 0
+        bgimage: "qrc:/space/img/astronaut"
+        ship: ship
+        universeZ: 1
     }
 
     Spaceship {
@@ -77,11 +79,20 @@ Rectangle {
         ship: ship
     }
 
+    Indicator {
+        id: indicator
+        target: astronaut
+    }
+
     MouseArea {
         id: mousearea
         anchors.fill: parent
         hoverEnabled: true
         onPositionChanged: ship.setUniverseDirection(mouse.x, mouse.y)
+    }
+
+    Keys.onPressed: {
+        Qt.quit()
     }
 
     Timer {
@@ -100,6 +111,7 @@ Rectangle {
             bgGrayFog.gameStep();
             debris.gameStep();
             astronaut.gameStep();
+            indicator.gameStep();
         }
     }
 
