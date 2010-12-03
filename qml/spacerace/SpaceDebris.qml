@@ -45,18 +45,36 @@ Item {
         var half_ww = _warpWidth / 2;
         var half_wh = _warpHeight / 2;
 
+// don't wrap x behind astronaut algorithm:
+//        var distX = SharedScript.cameraX - universeX;
+//        if (Math.abs(distX) > half_ww) {
+//            if (distX > 0) {
+//                var tmpX = SharedScript.cameraX + half_ww;
+//                if (tmpX < SharedScript.distanteToAstronaut - 200)
+//                    universeX = tmpX;
+//           } else {
+//                var tmpX = SharedScript.cameraX - half_ww;
+//                if (tmpX > 0)
+//                    universeX = tmpX;
+//            }
+//        }
+
+// don̈́'t wrap x behind 0 algorithm:
         var distX = SharedScript.cameraX - universeX;
         if (Math.abs(distX) > half_ww) {
             if (distX > 0) {
-                var tmpX = SharedScript.cameraX + half_ww;
-                if (tmpX < SharedScript.distanteToAstronaut - 200)
-                    universeX = tmpX;
-           } else {
+                universeX = SharedScript.cameraX + half_ww;
+            } else {
                 var tmpX = SharedScript.cameraX - half_ww;
                 if (tmpX > 0)
                     universeX = tmpX;
             }
         }
+
+// Always wrap x algorithm:
+//        var distX = SharedScript.cameraX - universeX;
+//        if (Math.abs(distX) > half_ww)
+//            universeX = SharedScript.cameraX + (half_ww * ((distX > 0) ? 1 : -1));
 
         var distY = SharedScript.cameraY - universeY;
         if (Math.abs(distY) > half_wh)
