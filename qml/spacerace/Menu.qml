@@ -14,6 +14,7 @@ Image {
     }
 
     Rectangle {
+        id: startGame
         color: "green"
         width: 200
         anchors.top: parent.top
@@ -22,6 +23,19 @@ Image {
             anchors.fill: parent
             onClicked: {
                 root.newGame();
+            }
+        }
+    }
+    Rectangle {
+        id: endGame
+        color: "red"
+        width: 200
+        anchors.top: startGame.bottom
+        anchors.bottom: parent.bottom
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                Qt.quit();
             }
         }
     }

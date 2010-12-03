@@ -21,18 +21,16 @@ Image {
     property real _speedY: 0                        // current speed along y-axis
     property real _speedMaxX: 7                     // abs(_speedX) <=_speedMaxX
     property real _speedMaxY: 7                     // abs(_speedY) <=_speedMaxY
-    property real _wobble: 0                        // visual shaking of ship
-
-    property int collisionTime: 0;
+    property int _collisionTime: 0;
 
     Behavior on directionInRadians {
-        enabled: ship.collisionTime;
+        enabled: ship._collisionTime;
         SequentialAnimation {
             PropertyAnimation {}
         }
     }
 
-    rotation: (180 * directionInRadians / Math.PI)// + ((thrust == 1) ? _wobble : 0);
+    rotation: (180 * directionInRadians / Math.PI)
     source: "qrc:/space/img/spaceship1.gif"
 
     Component.onCompleted: SharedScript.ship = this;
@@ -50,7 +48,7 @@ Image {
     }
 
     function setUniverseDirection(x, y) {
-        if (!ship.mouseControlled || ship.collisionTime)
+        if (!ship.mouseControlled || ship._collisionTime)
             return;
 
         var halfShipHeight = ship.height / 2;
@@ -73,7 +71,7 @@ Image {
         enabled: ship.mouseControlled == false;
 
         onRotationXChanged: {
-            if (ship.collisionTime)
+            if (ship._collisionTime)
                 return;
             var thrustRange = ship._rotationFullThrust - ship._rotationNoThrust;
             var t = ((rotationX - ship._rotationNoThrust) / thrustRange);
@@ -83,7 +81,7 @@ Image {
         }
 
         onRotationYChanged: {
-            if (ship.collisionTime)
+            if (ship._collisionTime)
                 return;
 //            if (Math.abs(rotationY) < 5)
 //                return;
@@ -120,16 +118,15 @@ Image {
         if (nr > fire.imgCount) nr = 1;
         fire.imgNr = nr;
         fire.opacity = 0.4 + (0.6 * Math.random());
-        ship._wobble = -3 + (3 * Math.random());
         fire.flipImage = Math.random() > 0.5 ? 1 : -1;
     }
 
     function collideWithDebris()
     {
-        if (ship.collisionTime)
+        if (ship._collisionTime)
             return;
 
-        ship.collisionTime = SharedScript.gameTime;
+        ship._collisionTime = SharedScript.gameTime;
         directionInRadians += Math.PI/2;
         var driftSpeed = Math.abs(_speedX) + Math.abs(_speedY);
         _speedX = driftSpeed * Math.sin(directionInRadians);
@@ -139,19 +136,25 @@ Image {
 
     function resetCollision()
     {
-        if (ship.collisionTime + 25 < SharedScript.gameTime)
-            ship.collisionTime = 0;
+        if (ship._collisionTime + 25 < SharedScript.gameTime)
+            ship._collisionTime = 0;
     }
 
     function gameStep() {
         animateShip();
         moveShip();
-        if (ship.collisionTime)
+        if (ship._collisionTime)
             resetCollision();
     }
 
     function reset()
     {
-
+        universeX = 0;
+        universeY = 0;
+        thrust = 0;
+        directionInRadians = 0;
+        _speedX = 0;
+        _speedY = 0;
+        ship._collisionTime = 0;
     }
 }

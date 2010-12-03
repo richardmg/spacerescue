@@ -7,6 +7,7 @@ var cameraY = 0;
 var screenWidth = 0;
 var screenHeight = 0;
 var distancteToAstronaut = 400;
+var seed = 0;
 
 var shipCollisionCenterX = 0;
 var shipCollisionCenterY = 0;
@@ -15,6 +16,14 @@ var _shipCollisionRadius = 20;
 var random = RandomNumberGenerator(1);
 var gateArray = [];
 var debrisArray = [];
+
+function reset()
+{
+    gameTime = 0;
+    clockTime = new Date();
+    var seedKey = 1;
+    seed = 2345678901 + (seedKey * 0xFFFFFF) + (seedKey * 0xFFFF);
+}
 
 function updateScreenPositionFor(targetItem)
 {
@@ -35,19 +44,17 @@ function collidesWithShip(targetItem, radius, shiftX, shiftY)
 }
 
 function nextRandomNumber(){
-    var hi = this.seed / this.Q;
-    var lo = this.seed % this.Q;
+    var hi = seed / this.Q;
+    var lo = seed % this.Q;
     var test = this.A * lo - this.R * hi;
-    if(test > 0){
-        this.seed = test;
-    } else {
-        this.seed = test + this.M;
-    }
-    return (this.seed * this.oneOverM);
+    if (test > 0)
+        seed = test;
+    else
+        seed = test + this.M;
+    return (seed * this.oneOverM);
 }
 
 function RandomNumberGenerator(seed){
-    this.seed = 2345678901 + (seed * 0xFFFFFF) + (seed * 0xFFFF);
     this.A = 48271;
     this.M = 2147483647;
     this.Q = this.M / this.A;

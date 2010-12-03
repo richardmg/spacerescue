@@ -81,12 +81,6 @@ Rectangle {
         target: astronaut
     }
 
-    RescueTimer {
-        id: rescueTimer
-        x: 10
-        y: 10
-    }
-
     MouseArea {
         id: mousearea
         anchors.fill: parent
@@ -99,8 +93,14 @@ Rectangle {
         root: top
     }
 
+    RescueTimer {
+        id: rescueTimer
+        x: 10
+        y: 10
+    }
+
     Keys.onPressed: {
-        Qt.quit()
+        endGame()
     }
 
     Timer {
@@ -130,16 +130,20 @@ Rectangle {
 
     function newGame()
     {
-        SharedScript.gameTime = 0;
+        SharedScript.reset();
         ship.reset();
         debris.reset();
         astronaut.reset();
         rescueTimer.reset();
+        rescueTimer.running = true;
+        rescueTimer.menuMode = false
         menu.opacity = 0;
     }
 
     function endGame()
     {
         menu.opacity = 1;
+        rescueTimer.running = false;
+        rescueTimer.menuMode = true
     }
 }

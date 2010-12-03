@@ -48,6 +48,7 @@ Item {
     function reset()
     {
         universeX = SharedScript.distancteToAstronaut;
+        universeY = 0;
         opacity = 1;
     }
 

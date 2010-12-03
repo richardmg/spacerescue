@@ -6,10 +6,16 @@ Text {
     property int minutes: 0
     property int seconds: 0
     property int milliseconds: 0
-    property bool running: true
+    property bool running: false
+    property bool menuMode: true;
+
+    anchors.right: menuMode ? parent.right : undefined
+    anchors.leftMargin: 10
+    anchors.rightMargin: 10
+    anchors.left: !menuMode ? parent.left : undefined
 
     color: "#8888ff"
-    text: "<b>" + format(hours) + " : " + format(minutes) + " : " + format(seconds)
+    text: "<b>" + format(hours) + " : " + format(minutes) + " : " + format(seconds) + (menuMode ? " : " + format(milliseconds) : "")
 
     Component.onCompleted: reset();
 
