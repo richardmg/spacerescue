@@ -99,20 +99,22 @@ Rectangle {
         interval: 50;
         running: true;
         repeat: true
-        property int time: 0
 
         onTriggered: {
-            ship.gameStep(time);
-            bgStars.gameStep(time);
-            bgSun.gameStep(time);
-            bgEarth.gameStep(time);
-            bgMoon.gameStep(time);
-            bgBlueFog.gameStep(time);
-            bgGrayFog.gameStep(time);
-            debris.gameStep(time);
-            astronaut.gameStep(time);
-            indicator.gameStep(time);
-            if (++time == Number.MAX_VALUE) time = 0;
+            ship.gameStep();
+            bgStars.gameStep();
+            bgSun.gameStep();
+            bgEarth.gameStep();
+            bgMoon.gameStep();
+            bgBlueFog.gameStep();
+            bgGrayFog.gameStep();
+            debris.gameStep();
+            astronaut.gameStep();
+            indicator.gameStep();
+
+            ++SharedScript.gameTime;
+            if (SharedScript.gameTime == Number.MAX_VALUE)
+                SharedScript.gameTime = 0;
         }
     }
 

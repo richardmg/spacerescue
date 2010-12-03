@@ -4,11 +4,11 @@ import "global.js" as SharedScript
 Item {
     property variant ship
 
-    function gameStep(time)
+    function gameStep()
     {
         for (var i=0; i<SharedScript.debrisArray.length; ++i) {
             var debris = SharedScript.debrisArray[i];
-            debris.gameStep(time);
+            debris.gameStep();
         }
     }
 

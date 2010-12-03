@@ -37,7 +37,7 @@ Item {
         _speedY = (0.4 + (Math.random() * 0.6)) * _speedMaxY * ((Math.random(1) > 0.5) ? 1 : -1);
     }
 
-    function gameStep(time)
+    function gameStep()
     {
         universeX += _speedX;
         universeY += _speedY;
@@ -80,7 +80,7 @@ Item {
         if (Math.abs(distY) > half_wh)
             universeY = SharedScript.cameraY + (half_wh * ((distY > 0) ? 1 : -1));
 
-        if ((time % imageSpeed) == 0) {
+        if ((SharedScript.gameTime % imageSpeed) == 0) {
             var nr = _currentImageNr + 1;
             if (nr > imageCount -1 ) nr = 0;
             _currentImageNr = nr;

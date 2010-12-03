@@ -1,5 +1,6 @@
 .pragma library
 
+var gameTime = 0;
 var cameraX = 0;
 var cameraY = 0;
 var screenWidth = 0;

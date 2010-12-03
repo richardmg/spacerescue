@@ -25,12 +25,12 @@ Item {
         }
     }
 
-    function gameStep(time)
+    function gameStep()
     {
         universeX += speedX;
         universeY += speedY;
 
-        if ((time % imageSpeed) == 0) {
+        if ((SharedScript.gameTime % imageSpeed) == 0) {
             var nr = _currentImageNr + 1;
             if (nr > imageCount -1 ) nr = 0;
             _currentImageNr = nr;

@@ -23,13 +23,12 @@ Image {
     property real _speedMaxY: 7                     // abs(_speedY) <=_speedMaxY
     property real _wobble: 0                        // visual shaking of ship
 
-    property bool isColliding: false;
+    property int collisionTime: 0;
 
     Behavior on directionInRadians {
-        enabled: ship.isColliding;
+        enabled: ship.collisionTime;
         SequentialAnimation {
             PropertyAnimation {}
-            PropertyAction { target: ship; property: "isColliding"; value: "false" }
         }
     }
 
@@ -51,7 +50,7 @@ Image {
     }
 
     function setUniverseDirection(x, y) {
-        if (!ship.mouseControlled || ship.isColliding)
+        if (!ship.mouseControlled || ship.collisionTime)
             return;
 
         var halfShipHeight = ship.height / 2;
@@ -74,7 +73,7 @@ Image {
         enabled: ship.mouseControlled == false;
 
         onRotationXChanged: {
-            if (ship.isColliding)
+            if (ship.collisionTime)
                 return;
             var thrustRange = ship._rotationFullThrust - ship._rotationNoThrust;
             var t = ((rotationX - ship._rotationNoThrust) / thrustRange);
@@ -84,7 +83,7 @@ Image {
         }
 
         onRotationYChanged: {
-            if (ship.isColliding)
+            if (ship.collisionTime)
                 return;
 //            if (Math.abs(rotationY) < 5)
 //                return;
@@ -127,13 +126,14 @@ Image {
 
     function collideWithDebris()
     {
-        if (ship.isColliding)
+        if (ship.collisionTime)
             return;
 
-        ship.isColliding = true;
+        ship.collisionTime = SharedScript.gameTime;
         directionInRadians += Math.PI/2;
-        _speedX = (_speedX + _speedY) * Math.sin(directionInRadians);
-        _speedY = (_speedX + _speedY) * Math.cos(directionInRadians);
+        var driftSpeed = Math.abs(_speedX) + Math.abs(_speedY);
+        _speedX = driftSpeed * Math.sin(directionInRadians);
+        _speedY = driftSpeed * Math.cos(directionInRadians);
         thrust = 0;
     }
 
@@ -142,9 +142,17 @@ Image {
         console.debug("YIHAA");
     }
 
+    function resetCollision()
+    {
+        if (ship.collisionTime + 25 < SharedScript.gameTime)
+            ship.collisionTime = 0;
+    }
+
     function gameStep() {
         animateShip();
         moveShip();
+        if (ship.collisionTime)
+            resetCollision();
     }
 
 }
