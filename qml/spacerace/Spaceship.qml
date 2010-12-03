@@ -10,7 +10,7 @@ Image {
 
     property real thrust: 0                         // current speed gain (0 -> 1)
     property real engineSize: 1                     // how fast the ship will move upon full thrust
-    property real directionInRadians: 0             // orientation of ship
+    property real directionInRadians: Math.PI/2     // orientation of ship
     property bool mouseControlled: false            // ship controlled by mouse or sensor
 
     property real _rotationNoThrust: 40             // x rotation where ship have no thrust
@@ -152,7 +152,7 @@ Image {
         universeX = 0;
         universeY = 0;
         thrust = 0;
-        directionInRadians = 0;
+        directionInRadians = Math.PI / 2;
         _speedX = 0;
         _speedY = 0;
         ship._collisionTime = 0;

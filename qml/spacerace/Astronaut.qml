@@ -6,12 +6,12 @@ Item {
     property real universeY: 0
     property real universeZ: 1
 
-    property real speedX: 3
+    property real speedX: 0
     property real speedY: 0
 
     property string bgimage: "qrc:/space/img/astronaut"
     property int imageCount: 2
-    property int imageSpeed: 20
+    property int imageSpeed: 15
     property int _currentImageNr: SharedScript.random.next() * imageCount
 
     property Item ship

@@ -6,7 +6,7 @@ var cameraX = 0;
 var cameraY = 0;
 var screenWidth = 0;
 var screenHeight = 0;
-var distancteToAstronaut = 400;
+var distancteToAstronaut = 6000;
 var seed = 0;
 
 var shipCollisionCenterX = 0;
