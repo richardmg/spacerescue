@@ -12,6 +12,7 @@ var shipCollisionCenterX = 0;
 var shipCollisionCenterY = 0;
 var _shipCollisionRadius = 20;
 
+var random = RandomNumberGenerator(1);
 var gateArray = [];
 var debrisArray = [];
 
@@ -31,4 +32,27 @@ function collidesWithShip(targetItem, radius, shiftX, shiftY)
     if (Math.sqrt((k1 * k1) + (k2 * k2)) < (radius + _shipCollisionRadius))
         return true;
     return false;
+}
+
+function nextRandomNumber(){
+    var hi = this.seed / this.Q;
+    var lo = this.seed % this.Q;
+    var test = this.A * lo - this.R * hi;
+    if(test > 0){
+        this.seed = test;
+    } else {
+        this.seed = test + this.M;
+    }
+    return (this.seed * this.oneOverM);
+}
+
+function RandomNumberGenerator(seed){
+    this.seed = 2345678901 + (seed * 0xFFFFFF) + (seed * 0xFFFF);
+    this.A = 48271;
+    this.M = 2147483647;
+    this.Q = this.M / this.A;
+    this.R = this.M % this.A;
+    this.oneOverM = 1.0 / this.M;
+    this.next = nextRandomNumber;
+    return this;
 }

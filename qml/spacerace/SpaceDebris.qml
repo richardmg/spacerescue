@@ -13,7 +13,7 @@ Item {
     property string bgimage: "" // without number and extension
     property int imageCount: 1
     property int imageSpeed: 1
-    property int _currentImageNr: Math.random() * imageCount
+    property int _currentImageNr: SharedScript.random.next() * imageCount
 
     property real _speedX: 0
     property real _speedY: 0
@@ -30,11 +30,11 @@ Item {
         _warpHeight = SharedScript.screenHeight + (debris.height * 4)
         var startX = 250;
 
-        universeX = startX + (Math.random(1) * _warpWidth);
-        universeY = -(_warpHeight / 2) + (Math.random(1) * _warpHeight);
+        universeX = startX + (SharedScript.random.next() * _warpWidth);
+        universeY = -(_warpHeight / 2) + (SharedScript.random.next() * _warpHeight);
 
-        _speedX = (0.4 + (Math.random() * 0.6)) * _speedMaxX
-        _speedY = (0.4 + (Math.random() * 0.6)) * _speedMaxY * ((Math.random(1) > 0.5) ? 1 : -1);
+        _speedX = (0.4 + (SharedScript.random.next() * 0.6)) * _speedMaxX
+        _speedY = (0.4 + (SharedScript.random.next() * 0.6)) * _speedMaxY * ((SharedScript.random.next() > 0.5) ? 1 : -1);
     }
 
     function gameStep()
