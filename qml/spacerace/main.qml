@@ -6,8 +6,8 @@ Rectangle {
     color: "#000000"
     width: 100
     height: 100
-    onWidthChanged: SharedScript.screenWidth = width;
-    onHeightChanged: SharedScript.screenHeight = height;
+    onWidthChanged: { SharedScript.screenWidth = width; debris.placeDebris(); }
+    onHeightChanged: { SharedScript.screenHeight = height; debris.placeDebris(); }
 
     UniverseBackground {
         id: bgStars
@@ -17,26 +17,34 @@ Rectangle {
 
     PlanetBackground {
         id: bgSun
-        universeX: 300
-        universeY: -200
+        universeX: 600
+        universeY: -150
         bgimage: "qrc:/space/img/sun.png"
         universeZ: 0.11
     }
 
     PlanetBackground {
         id: bgEarth
-        universeX: -300
-        universeY: 200
+        universeX: 250
+        universeY: 0
         bgimage: "qrc:/space/img/earth.png"
         universeZ: 0.2
     }
 
     PlanetBackground {
         id: bgMoon
-        universeX: 550
-        universeY: 350
+        universeX: 1100
+        universeY: 100
         bgimage: "qrc:/space/img/moon.png"
         universeZ: 0.25
+    }
+
+    PlanetBackground {
+        id: astronaut
+        universeX: SharedScript.distanteToAstronaut
+        universeY: 0
+        bgimage: "qrc:/space/img/astronaut.png"
+        universeZ: 1
     }
 
     UniverseBackground {
@@ -45,10 +53,6 @@ Rectangle {
         windY: 0.1
         bgimage: "qrc:/space/img/universe.png"
         universeZ: 3
-    }
-
-    RaceTrack {
-        id: raceTrack
     }
 
     Spaceship {
@@ -95,7 +99,7 @@ Rectangle {
             bgBlueFog.gameStep();
             bgGrayFog.gameStep();
             debris.gameStep();
-            raceTrack.gameStep();
+            astronaut.gameStep();
         }
     }
 

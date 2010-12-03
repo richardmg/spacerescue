@@ -12,11 +12,19 @@ Item {
         }
     }
 
+    function placeDebris()
+    {
+        for (var i=0; i<SharedScript.debrisArray.length; ++i) {
+            var debris = SharedScript.debrisArray[i];
+            debris.placeDebris();
+        }
+    }
+
     Component.onCompleted: {
         // Create all debris:
         var debrisComponent = Qt.createComponent("SpaceDebris.qml");
         if (debrisComponent.status == Component.Ready) {
-            for (var i=0; i<4; ++i) {
+            for (var i=0; i<5; ++i) {
                 var debris = debrisComponent.createObject(parent);
                 debris.imageCount = 32
                 debris.bgimage = "qrc:/space/img/rock1/rock100"

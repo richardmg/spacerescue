@@ -4,8 +4,8 @@ var cameraX = 0;
 var cameraY = 0;
 var screenWidth = 0;
 var screenHeight = 0;
+var distanteToAstronaut = 5000;
 
-var ship;
 var shipCollisionCenterX = 0;
 var shipCollisionCenterY = 0;
 var _shipCollisionRadius = 20;

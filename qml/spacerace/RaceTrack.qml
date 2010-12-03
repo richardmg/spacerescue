@@ -16,14 +16,18 @@ Item {
 
     Component.onCompleted: {
         // Create all gates:
+        var gx = [0,    0,    0,  150]
+        var gy = [0, -300, -600, -900]
+
         var gateComponent = Qt.createComponent("PlanetBackground.qml");
         if (gateComponent.status == Component.Ready) {
             for (var i=0; i<0; ++i) {
                 var gate = gateComponent.createObject(parent);
                 gate.bgimage = "qrc:/space/img/moon.png";
-                gate.x = universeX + (i * 20);
-                gate.y = universeY + (i * 20);
+                gate.universeX = universeX + gx[i];
+                gate.universeY = universeY + gy[i];
                 SharedScript.gateArray.push(gate);
+                console.debug(gate.x, gate.y)
             }
         }
     }
