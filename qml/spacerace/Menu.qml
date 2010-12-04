@@ -3,6 +3,7 @@ import Qt 4.7
 Image {
     id: menu
     property Item root
+    property Item rescueTimer: menuTimer
 
     anchors.centerIn: root
     source: "qrc:/space/img/menu.png"
@@ -13,11 +14,21 @@ Image {
         }
     }
 
+    Rectangle {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: menuTimer.height + 20
+        color: "black"
+        opacity: 0.7
+    }
+
     Image {
         id: startGame
         source: "qrc:/space/img/hal_newgame.png"
-        anchors.top: parent.top
-        anchors.bottom: parent.verticalCenter
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -25,16 +36,24 @@ Image {
             }
         }
     }
+
     Image {
         id: endGame
         source: "qrc:/space/img/hal.png"
-        anchors.top: startGame.bottom
         anchors.bottom: parent.bottom
+        anchors.right: parent.right
         MouseArea {
             anchors.fill: parent
             onClicked: {
                 Qt.quit();
             }
         }
+    }
+
+    RescueTimer {
+        id: menuTimer
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
     }
 }
