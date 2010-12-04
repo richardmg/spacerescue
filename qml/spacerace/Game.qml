@@ -2,13 +2,15 @@ import Qt 4.7
 import "global.js" as SharedScript
 
 Rectangle {
-    id: top
+    id: gameRoot
     color: "#000000"
     width: parent.width
     height: parent.height
     onWidthChanged: debris.reset();
     onHeightChanged: debris.reset();
     focus: true
+
+    property Item root
 
     UniverseBackground {
         id: bgStars
@@ -51,13 +53,13 @@ Rectangle {
     Astronaut {
         id: astronaut
         ship: ship
-        root: top
+        root: game.root
      }
 
     Spaceship {
         id: ship
-        x: top.width / 2
-        y: top.height / 2
+        x: gameRoot.width / 2
+        y: gameRoot.height / 2
         mouseControlled: mousearea.pressed
         onUniverseXChanged: SharedScript.cameraX = universeX
         onUniverseYChanged: SharedScript.cameraY = universeY;
@@ -88,22 +90,11 @@ Rectangle {
         onPositionChanged: ship.setUniverseDirection(mouse.x, mouse.y)
     }
 
-    Menu {
-        id: menu
-        anchors.centerIn: top
-        root: top
-        visible: true
-    }
-
     RescueTimer {
         id: rescueTimer
         x: 10
         y: 10
         opacity: 0;
-    }
-
-    Keys.onPressed: {
-        endGame()
     }
 
     Timer {
@@ -131,6 +122,10 @@ Rectangle {
         }
     }
 
+    Keys.onPressed: {
+        root.endGame()
+    }
+
     function newGame()
     {
         SharedScript.reset();
@@ -140,7 +135,6 @@ Rectangle {
         rescueTimer.reset();
         rescueTimer.running = true;
         rescueTimer.menuMode = false
-        menu.opacity = 0;
         rescueTimer.opacity = 1;
         gameTimer.running = true;
     }
@@ -148,7 +142,6 @@ Rectangle {
     function endGame()
     {
         gameTimer.running = false;
-        menu.opacity = 1;
         rescueTimer.running = false;
         rescueTimer.menuMode = true
         rescueTimer.opacity = 0;
