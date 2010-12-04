@@ -15,10 +15,8 @@ Image {
     }
 
     Rectangle {
-        anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
+        width: parent.width
         height: menuTimer.height + 20
         color: "black"
         opacity: 0.7
