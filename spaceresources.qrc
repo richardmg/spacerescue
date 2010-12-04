@@ -45,5 +45,7 @@
         <file>img/arrow.png</file>
         <file>img/astronaut1.png</file>
         <file>img/menu.png</file>
+        <file>img/hal.png</file>
+        <file>img/hal_newgame.png</file>
     </qresource>
 </RCC>

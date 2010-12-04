@@ -13,10 +13,9 @@ Image {
         }
     }
 
-    Rectangle {
+    Image {
         id: startGame
-        color: "green"
-        width: 200
+        source: "qrc:/space/img/hal_newgame.png"
         anchors.top: parent.top
         anchors.bottom: parent.verticalCenter
         MouseArea {
@@ -26,10 +25,9 @@ Image {
             }
         }
     }
-    Rectangle {
+    Image {
         id: endGame
-        color: "red"
-        width: 200
+        source: "qrc:/space/img/hal.png"
         anchors.top: startGame.bottom
         anchors.bottom: parent.bottom
         MouseArea {
