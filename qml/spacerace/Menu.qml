@@ -4,8 +4,6 @@ Image {
     id: menu
     property Item root
     property Item rescueTimer: menuTimer
-
-    anchors.centerIn: root
     source: "qrc:/space/img/menu.png"
 
     Behavior on opacity {
