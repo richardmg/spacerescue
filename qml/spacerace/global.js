@@ -25,6 +25,15 @@ function reset()
     seed = 2345678901 + (seedKey * 0xFFFFFF) + (seedKey * 0xFFFF);
 }
 
+function eraseDebrisArray()
+{
+    // It is important to create arrays inside a .js file
+    // to ensure normal javascript array behaviour:
+    for (var i=0; i<debrisArray.length; ++i)
+        debrisArray[i].destroy();
+    debrisArray = [];
+}
+
 function updateScreenPositionFor(targetItem)
 {
     // Calculate from universe position to screen position:
