@@ -34,7 +34,8 @@ Rectangle {
         state = "gameState";
         game.newGame();
         menu.opacity = 0;
-        game.opacity = 1
+        game.opacity = 1;
+        game.focus = true;
     }
 
     function endGame()

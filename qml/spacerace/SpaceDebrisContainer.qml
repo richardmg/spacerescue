@@ -19,7 +19,8 @@ Item {
 
         var debrisComponent = Qt.createComponent("SpaceDebris.qml");
         if (debrisComponent.status == Component.Ready) {
-            for (var i=0; i<20; ++i) {
+            var count = Math.min(25, (SharedScript.level + 2));
+            for (var i=0; i<count; ++i) {
                 var debris = debrisComponent.createObject(top);
                 debris.imageCount = 32
                 debris.bgimage = "qrc:/space/img/rock1/rock100"

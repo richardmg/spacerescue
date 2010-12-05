@@ -26,7 +26,7 @@ Item {
     height: debris.height
 
     function reset() {
-        if (SharedScript.level < 20)
+        if (SharedScript.level < 25)
             _speedMaxX = -1
         else
             _speedMaxX = -(SharedScript.level/100) * 5

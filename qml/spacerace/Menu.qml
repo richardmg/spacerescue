@@ -5,6 +5,7 @@ Image {
     id: menu
     property Item root
     property Item rescueTimer: menuTimer
+    property string level: levelInput.text;
     source: "qrc:/space/img/menu.png"
 
     Behavior on opacity {
@@ -29,6 +30,7 @@ Image {
         MouseArea {
             anchors.fill: parent
             onClicked: {
+                SharedScript.level = parseInt(menu.level);
                 root.newGame();
             }
         }
@@ -66,7 +68,6 @@ Image {
         text: "20"
         color: "red"
         cursorVisible: true
-        onTextChanged: SharedScript.level = text
     }
 
     Text {
