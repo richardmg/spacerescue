@@ -8,7 +8,6 @@ var screenWidth = 0;
 var screenHeight = 0;
 var level = 5
 var seed = 0;
-
 var shipCollisionCenterX = 0;
 var shipCollisionCenterY = 0;
 var _shipCollisionRadius = 20;

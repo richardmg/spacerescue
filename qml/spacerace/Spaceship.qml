@@ -83,10 +83,7 @@ Image {
         onRotationYChanged: {
             if (ship._collisionTime)
                 return;
-//            if (Math.abs(rotationY) < 5)
-//                return;
             var r = rotationY / ship._rotationMaxBank;
-//            var r = ((rotationY > 0) ? 1 : -1);
             if (r < -1) r = -1;
             if (r >  1) r =  1;
             directionInRadians += r * _directionAtMaxBank;

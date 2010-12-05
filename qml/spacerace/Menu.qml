@@ -77,7 +77,7 @@ Image {
     Text {
         anchors.top: levelup.top
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: 14
+        anchors.topMargin: 13
         font.pointSize: 32
         font.bold: true
         text: levelLabel.text
@@ -98,7 +98,7 @@ Image {
     RescueTimer {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: levelup.bottom
-        anchors.bottomMargin: 6
+        anchors.bottomMargin: 7
         color: "black"
         font.pointSize: 22
         font.bold: true
