@@ -8,7 +8,7 @@ Rectangle {
     height: parent.height
     onWidthChanged: debris.reset();
     onHeightChanged: debris.reset();
-    focus: true
+    focus: opacity > 0;
 
     property Item root
 
@@ -123,7 +123,7 @@ Rectangle {
     }
 
     Keys.onPressed: {
-        root.endGame()
+        gameRoot.root.endGame()
     }
 
     function newGame()

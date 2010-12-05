@@ -2,13 +2,16 @@ import Qt 4.7
 import "global.js" as SharedScript
 
 Rectangle {
-    id: top
+    id: movieRoot
     color: "#000000"
-    width: 480
-    height: 800
-    onWidthChanged: { SharedScript.screenWidth = width; debris.reset(); }
-    onHeightChanged: { SharedScript.screenHeight = height; debris.reset(); }
-    focus: true
+    width: parent.width
+    height: parent.height
+    onWidthChanged: debris.reset();
+    onHeightChanged: debris.reset();
+
+    property Item root
+
+    Component.onCompleted: curtain.opacity = 0;
 
     UniverseBackground {
         id: bgStars
@@ -51,13 +54,13 @@ Rectangle {
     Astronaut {
         id: astronaut
         ship: ship
-        root: top
+        root: game.root
      }
 
     Spaceship {
         id: ship
-        x: top.width / 2
-        y: top.height / 2
+        x: movieRoot.width / 2
+        y: movieRoot.height / 2
         mouseControlled: mousearea.pressed
         onUniverseXChanged: SharedScript.cameraX = universeX
         onUniverseYChanged: SharedScript.cameraY = universeY;
@@ -84,30 +87,13 @@ Rectangle {
     MouseArea {
         id: mousearea
         anchors.fill: parent
-        hoverEnabled: true
-        onPositionChanged: ship.setUniverseDirection(mouse.x, mouse.y)
-    }
-
-    Menu {
-        id: menu
-        root: top
-    }
-
-    RescueTimer {
-        id: rescueTimer
-        x: 10
-        y: 10
-        opacity: 0;
-    }
-
-    Keys.onPressed: {
-        endGame()
+        onClicked: movieRoot.root.endGame();
     }
 
     Timer {
         id: gameTimer
         interval: 50;
-        running: true;
+        running: visible;
         repeat: true
 
         onTriggered: {
@@ -121,7 +107,6 @@ Rectangle {
             debris.gameStep();
             astronaut.gameStep();
             indicator.gameStep();
-            rescueTimer.gameStep();
 
             ++SharedScript.gameTime;
             if (SharedScript.gameTime == Number.MAX_VALUE)
@@ -129,28 +114,17 @@ Rectangle {
         }
     }
 
-    function newGame()
-    {
-        SharedScript.reset();
-        ship.reset();
-        debris.reset();
-        astronaut.reset();
-        rescueTimer.reset();
-        rescueTimer.running = true;
-        rescueTimer.menuMode = false
-        menu.opacity = 0;
-        rescueTimer.opacity = 1;
-    }
+    Rectangle {
+        id: curtain
+        anchors.fill: parent
+        color: "black"
 
-    function endGame()
-    {
-        menu.opacity = 1;
-        rescueTimer.running = false;
-        rescueTimer.menuMode = true
-        rescueTimer.opacity = 0;
-        menu.rescueTimer.hours = rescueTimer.hours
-        menu.rescueTimer.minutes = rescueTimer.minutes
-        menu.rescueTimer.seconds = rescueTimer.seconds
-        menu.rescueTimer.milliseconds = rescueTimer.milliseconds
+        Behavior on opacity {
+            SequentialAnimation {
+                PropertyAnimation {
+                    duration: 3000
+                }
+            }
+        }
     }
 }

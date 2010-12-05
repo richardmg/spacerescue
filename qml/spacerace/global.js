@@ -6,7 +6,7 @@ var cameraX = 0;
 var cameraY = 0;
 var screenWidth = 0;
 var screenHeight = 0;
-var distancteToAstronaut = 5000;
+var level = 1
 var seed = 0;
 
 var shipCollisionCenterX = 0;
@@ -21,7 +21,7 @@ function reset()
 {
     gameTime = 0;
     clockTime = new Date();
-    var seedKey = 1;
+    var seedKey = level;
     seed = 2345678901 + (seedKey * 0xFFFFFF) + (seedKey * 0xFFFF);
 }
 

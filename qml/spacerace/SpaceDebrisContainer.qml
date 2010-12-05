@@ -16,13 +16,13 @@ Item {
     function reset()
     {
         for (var i=0; i<SharedScript.debrisArray.length; ++i) {
-            var debris = SharedScript.debrisArray[i];
-            debris.reset();
+            var i = SharedScript.debrisArray[i];
+            console.debug("destroy:" + i)
+            i.destroy();
         }
-    }
+        SharedScript.debrisArray = [];
 
-    Component.onCompleted: {
-        // Create all debris:
+        console.debug (SharedScript.debrisArray.length)
         var debrisComponent = Qt.createComponent("SpaceDebris.qml");
         if (debrisComponent.status == Component.Ready) {
             for (var i=0; i<20; ++i) {

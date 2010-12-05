@@ -26,6 +26,11 @@ Item {
     height: debris.height
 
     function reset() {
+        if (SharedScript.level < 20)
+            _speedMaxX = -1
+        else
+            _speedMaxX = -(SharedScript.level/100) * 5
+
         _warpWidth = SharedScript.screenWidth + 300;
         _warpHeight = SharedScript.screenHeight + (debris.height * 4)
         var startX = 250;

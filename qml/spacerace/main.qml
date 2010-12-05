@@ -7,30 +7,42 @@ Rectangle {
     height: 800
     onWidthChanged: SharedScript.screenWidth = width;
     onHeightChanged: SharedScript.screenHeight = height;
-    focus: true
+    color: "black"
 
     Game {
         id: game
         root: root
+        opacity: 0
+        Component.onCompleted: game.newGame()
     }
 
     Menu {
         id: menu
         anchors.centerIn: root
-        visible: true
+        root: root
+        opacity: 0
+    }
+
+    MovieIntro {
+        id: intro
+        anchors.centerIn: root
         root: root
     }
 
     function newGame()
     {
-        menu.opacity = 0;
+        state = "gameState";
         game.newGame();
+        menu.opacity = 0;
+        game.opacity = 1
     }
 
     function endGame()
     {
-        menu.opacity = 1;
+        state = "menuState";
         game.endGame();
+        intro.opacity = 0;
+        menu.opacity = 1;
     }
 
 }

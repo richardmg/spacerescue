@@ -31,6 +31,7 @@ Image {
     }
 
     rotation: (180 * directionInRadians / Math.PI)
+
     source: "qrc:/space/img/spaceship1.gif"
 
     Component.onCompleted: SharedScript.ship = this;
@@ -50,7 +51,6 @@ Image {
     function setUniverseDirection(x, y) {
         if (!ship.mouseControlled || ship._collisionTime)
             return;
-
         var halfShipHeight = ship.height / 2;
         var halfShipWidth = ship.width / 2;
         var relX = ship.pos.x + halfShipWidth - x;

@@ -2,7 +2,7 @@ import Qt 4.7
 import "global.js" as SharedScript
 
 Item {
-    property real universeX: SharedScript.distancteToAstronaut
+    property real universeX: Math.min(1000, Math.max(6000, (SharedScript.level * 500)));
     property real universeY: 0
     property real universeZ: 1
 
@@ -47,7 +47,7 @@ Item {
 
     function reset()
     {
-        universeX = SharedScript.distancteToAstronaut;
+        universeX = Math.max(1000, Math.min(6000, (SharedScript.level * 500)));
         universeY = 0;
         opacity = 1;
     }

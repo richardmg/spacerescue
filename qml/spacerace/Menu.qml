@@ -1,4 +1,5 @@
 import Qt 4.7
+import "global.js" as SharedScript
 
 Image {
     id: menu
@@ -15,7 +16,7 @@ Image {
     Rectangle {
         anchors.bottom: parent.bottom
         width: parent.width
-        height: menuTimer.height + 20
+        height: startGame.height
         color: "black"
         opacity: 0.7
     }
@@ -46,10 +47,64 @@ Image {
         }
     }
 
+    Text {
+        id: levelLabel
+        anchors.bottom: menuTimer.top
+        anchors.left: startGame.right
+        anchors.leftMargin: 50
+
+        text: "Level:"
+        color: "white"
+    }
+
+    TextInput {
+        id: levelInput
+        width:  250
+        anchors.bottom: menuTimer.top
+        anchors.left: levelLabel.right
+        anchors.leftMargin: 20
+        text: "20"
+        color: "red"
+        cursorVisible: true
+        onTextChanged: SharedScript.level = text
+    }
+
+    Text {
+        id: timerLabel
+        anchors.left: startGame.right
+        anchors.leftMargin: 50
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 25
+
+        text: "Time:"
+        color: "white"
+    }
+
     RescueTimer {
         id: menuTimer
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
+        anchors.left: timerLabel.right
+        anchors.leftMargin: 20
+        anchors.bottom: timerLabel.bottom
+        color: "red"
     }
+
+    Timer {
+        id: gameTimer
+        interval: 50;
+        running: true;
+        repeat: true
+
+        onTriggered: {
+            bgGrayFog.gameStep();
+        }
+    }
+
+    UniverseBackground {
+        id: bgGrayFog
+        windX: 3.2
+        windY: 0.2
+        bgimage: "qrc:/space/img/universetop2.png"
+        universeZ: 10
+    }
+
 }
