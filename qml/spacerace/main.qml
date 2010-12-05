@@ -13,7 +13,6 @@ Rectangle {
         id: game
         root: root
         opacity: 0
-        Component.onCompleted: game.newGame()
     }
 
     Menu {
@@ -44,6 +43,10 @@ Rectangle {
         game.endGame();
         intro.opacity = 0;
         menu.opacity = 1;
+        menu.rescueTimer.hours = game.rescueTimer.hours
+        menu.rescueTimer.minutes = game.rescueTimer.minutes
+        menu.rescueTimer.seconds = game.rescueTimer.seconds
+        menu.rescueTimer.milliseconds = game.rescueTimer.milliseconds
     }
 
 }

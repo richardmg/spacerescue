@@ -11,6 +11,7 @@ Rectangle {
     focus: opacity > 0;
 
     property Item root
+    property alias rescueTimer: rescueTimer
 
     UniverseBackground {
         id: bgStars
@@ -143,11 +144,5 @@ Rectangle {
     {
         gameTimer.running = false;
         rescueTimer.running = false;
-        rescueTimer.menuMode = true
-        rescueTimer.opacity = 0;
-        menu.rescueTimer.hours = rescueTimer.hours
-        menu.rescueTimer.minutes = rescueTimer.minutes
-        menu.rescueTimer.seconds = rescueTimer.seconds
-        menu.rescueTimer.milliseconds = rescueTimer.milliseconds
     }
 }

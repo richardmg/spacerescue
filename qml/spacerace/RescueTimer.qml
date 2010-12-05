@@ -8,9 +8,10 @@ Text {
     property int milliseconds: 0
     property bool running: false
     property bool menuMode: true;
+    property string label:  ""
 
     color: "#8888ff"
-    text: "<b>" + format(hours) + " : " + format(minutes) + " : " + format(seconds) + (menuMode ? " : " + format(milliseconds) : "")
+    text: "<b>" + label + format(hours) + " : " + format(minutes) + " : " + format(seconds) + (menuMode ? " : " + format(milliseconds) : "")
 
     Component.onCompleted: reset();
 

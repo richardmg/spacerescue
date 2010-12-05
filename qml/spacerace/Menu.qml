@@ -5,7 +5,6 @@ Image {
     id: menu
     property Item root
     property Item rescueTimer: menuTimer
-    property string level: levelInput.text;
     source: "qrc:/space/img/menu.png"
 
     Behavior on opacity {
@@ -15,11 +14,11 @@ Image {
     }
 
     Rectangle {
-        anchors.bottom: parent.bottom
         width: parent.width
-        height: startGame.height
-        color: "black"
-        opacity: 0.7
+        anchors.top:  leveldown.top
+        anchors.bottom: leveldown.bottom
+        color: "white"
+        opacity: 0.4
     }
 
     Image {
@@ -30,7 +29,6 @@ Image {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                SharedScript.level = parseInt(menu.level);
                 root.newGame();
             }
         }
@@ -49,44 +47,75 @@ Image {
         }
     }
 
+    Image {
+        id: leveldown
+        source: "qrc:/space/img/levelarrowdown.png"
+        anchors.bottom: parent.bottom
+        anchors.left: startGame.right
+        MouseArea {
+            anchors.fill: parent
+            onPressed: {
+                SharedScript.level = Math.max(1, (SharedScript.level - 1));
+                levelLabel.text = "Level: " + SharedScript.level;
+            }
+        }
+    }
+    Image {
+        id: levelup
+        source: "qrc:/space/img/levelarrowup.png"
+        anchors.bottom: parent.bottom
+        anchors.right: endGame.left
+        MouseArea {
+            anchors.fill: parent
+            onPressed: {
+                SharedScript.level++;
+                levelLabel.text = "Level: " + SharedScript.level;
+            }
+        }
+    }
+
+    Text {
+        anchors.top: levelup.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.topMargin: 14
+        font.pointSize: 32
+        font.bold: true
+        text: levelLabel.text
+        color: "black"
+    }
+
     Text {
         id: levelLabel
-        anchors.bottom: menuTimer.top
-        anchors.left: startGame.right
-        anchors.leftMargin: 50
-
-        text: "Level:"
-        color: "white"
-    }
-
-    TextInput {
-        id: levelInput
-        width:  250
-        anchors.bottom: menuTimer.top
-        anchors.left: levelLabel.right
-        anchors.leftMargin: 20
-        text: "20"
+        anchors.top: levelup.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.topMargin: 10
+        font.pointSize: 32
+        font.bold: true
+        text: "Level: " + SharedScript.level;
         color: "red"
-        cursorVisible: true
     }
 
-    Text {
-        id: timerLabel
-        anchors.left: startGame.right
-        anchors.leftMargin: 50
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 25
-
-        text: "Time:"
-        color: "white"
+    RescueTimer {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: levelup.bottom
+        anchors.bottomMargin: 6
+        color: "black"
+        font.pointSize: 22
+        font.bold: true
+        hours: menuTimer.hours
+        minutes: menuTimer.minutes
+        seconds: menuTimer.seconds
+        milliseconds: menuTimer.milliseconds
     }
 
     RescueTimer {
         id: menuTimer
-        anchors.left: timerLabel.right
-        anchors.leftMargin: 20
-        anchors.bottom: timerLabel.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: levelup.bottom
+        anchors.bottomMargin: 10
         color: "red"
+        font.pointSize: 22
+        font.bold: true
     }
 
     Timer {
