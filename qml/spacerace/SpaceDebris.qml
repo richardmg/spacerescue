@@ -17,8 +17,6 @@ Item {
 
     property real _speedX: 0
     property real _speedY: 0
-    property real _speedMaxX: -1
-    property real _speedMaxY: 1
 
     property variant ship
 
@@ -26,11 +24,6 @@ Item {
     height: debris.height
 
     function reset() {
-        if (SharedScript.level < 25)
-            _speedMaxX = -1
-        else
-            _speedMaxX = -(SharedScript.level/100) * 5
-
         _warpWidth = SharedScript.screenWidth + 300;
         _warpHeight = SharedScript.screenHeight + (debris.height * 4)
         var startX = 250;
@@ -38,8 +31,18 @@ Item {
         universeX = startX + (SharedScript.random.next() * _warpWidth);
         universeY = -(_warpHeight / 2) + (SharedScript.random.next() * _warpHeight);
 
-        _speedX = (0.4 + (SharedScript.random.next() * 0.6)) * _speedMaxX
-        _speedY = (0.4 + (SharedScript.random.next() * 0.6)) * _speedMaxY * ((SharedScript.random.next() > 0.5) ? 1 : -1);
+        var speedMaxX = -1
+        var speedMaxY = 1
+
+        if (SharedScript.level > 18) {
+            if (SharedScript.level % 2)
+                speedMaxX = -(SharedScript.level/100) * 5
+            else
+                speedMaxY = (SharedScript.level/100) * 5
+        }
+
+        _speedX = (0.4 + (SharedScript.random.next() * 0.6)) * speedMaxX
+        _speedY = (0.4 + (SharedScript.random.next() * 0.6)) * speedMaxY * ((SharedScript.random.next() > 0.5) ? 1 : -1);
     }
 
     function gameStep()

@@ -19,14 +19,14 @@ Rectangle {
         id: menu
         anchors.centerIn: root
         root: root
-        opacity: 0
+        opacity: 1
     }
 
-    MovieIntro {
-        id: intro
-        anchors.centerIn: root
-        root: root
-    }
+//    MovieIntro {
+//        id: intro
+//        anchors.centerIn: root
+//        root: root
+//    }
 
     function newGame()
     {
@@ -41,12 +41,12 @@ Rectangle {
     {
         state = "menuState";
         game.endGame();
-        intro.opacity = 0;
         menu.opacity = 1;
         menu.rescueTimer.hours = game.rescueTimer.hours
         menu.rescueTimer.minutes = game.rescueTimer.minutes
         menu.rescueTimer.seconds = game.rescueTimer.seconds
         menu.rescueTimer.milliseconds = game.rescueTimer.milliseconds
+        //        intro.opacity = 0;
     }
 
 }
