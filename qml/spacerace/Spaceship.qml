@@ -124,9 +124,9 @@ Image {
             return;
 
         ship._collisionTime = SharedScript.gameTime;
-        directionInRadians += Math.PI/2;
+        directionInRadians += Math.PI;
         var driftSpeed = Math.abs(_speedX) + Math.abs(_speedY);
-        _speedX = driftSpeed * Math.sin(directionInRadians);
+        _speedX = driftSpeed * Math.sin(-directionInRadians);
         _speedY = driftSpeed * Math.cos(directionInRadians);
         thrust = 0;
     }
