@@ -10,7 +10,7 @@ Image {
 
      SpaceAudio {
          id: music
-         source: "spacerace/audio/alien.mp3"
+         source: "spacerace/audio/ugress.mp3"
          volume: menu.opacity * 100
          play: true
          onVolumeChanged: if (volume == 0) position = 0;
