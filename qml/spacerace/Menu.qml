@@ -1,4 +1,5 @@
 import Qt 4.7
+import Qt.multimedia 4.7
 import "global.js" as SharedScript
 
 Image {
@@ -6,6 +7,11 @@ Image {
     property Item root
     property Item rescueTimer: menuTimer
     source: "qrc:/space/img/menu.png"
+
+     Audio {
+         id: playMusic
+         source: "alien.mp3"
+     }
 
     Behavior on opacity {
         SequentialAnimation {
