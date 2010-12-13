@@ -1,7 +1,8 @@
 # Add more folders to ship with the application, here
 qmlfiles.source = qml/spacerace
 qmlfiles.target = qml
-DEPLOYMENTFOLDERS = qmlfiles
+audio.source = audio/
+DEPLOYMENTFOLDERS = qmlfiles audio
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
@@ -22,7 +23,7 @@ symbian:TARGET.UID3 = 0xEC5D2BF4
 # the following lines and add the respective components to the 
 # MOBILITY variable. 
 CONFIG += mobility
-MOBILITY += sensors
+MOBILITY += sensors multimedia
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp
@@ -39,7 +40,8 @@ OTHER_FILES += \
     img/fire1.gif \
     qml/spacerace/Spaceship.qml \
     qml/spacerace/RaceTrack.qml \
-    qml/spacerace/main.qml
+    qml/spacerace/main.qml \
+    audio/alien.mp3
 
 RESOURCES += \
     spaceresources.qrc

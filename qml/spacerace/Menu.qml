@@ -1,5 +1,5 @@
 import Qt 4.7
-import Qt.multimedia 4.7
+import SpaceDebris 1.0
 import "global.js" as SharedScript
 
 Image {
@@ -8,9 +8,12 @@ Image {
     property Item rescueTimer: menuTimer
     source: "qrc:/space/img/menu.png"
 
-     Audio {
-         id: playMusic
-         source: "alien.mp3"
+     SpaceAudio {
+         id: music
+         source: "spacerace/audio/alien.mp3"
+         volume: menu.opacity * 100
+         play: true
+         onVolumeChanged: if (volume == 0) position = 0;
      }
 
     Behavior on opacity {

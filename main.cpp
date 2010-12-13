@@ -7,6 +7,7 @@
 #include <QtSensors/QRotationReading>
 #include <QtSensors/QRotationFilter>
 #include <qorientationsensor.h>
+#include <QMediaPlayer>
 
 using namespace QtMobility;
 
@@ -58,18 +59,80 @@ signals:
     void rotationZChanged(float rotationZ);
 };
 
+class SpaceAudio: public QDeclarativeItem
+{
+    Q_OBJECT
+    Q_PROPERTY(bool play READ playing() WRITE setPlay())
+    Q_PROPERTY(QString source READ source() WRITE setSource)
+    Q_PROPERTY(int volume READ volume() WRITE setVolume NOTIFY volumeChanged)
+    Q_PROPERTY(int position READ position() WRITE setPosition)
+
+    QMediaPlayer *mediaPlayer;
+    QString _source;
+    bool _play;
+    int _volume;
+
+public:
+    SpaceAudio() : mediaPlayer(new QMediaPlayer(this)), _source(""), _play(false), _volume(100)
+    {
+    }
+
+    bool playing() { return _play; }
+    QString source() { return _source; }
+    int volume() { return _volume; }
+    int position() { return mediaPlayer->position(); }
+
+    void setPlay(bool play)
+    {
+        _play = play;
+        play? mediaPlayer->play() : mediaPlayer->stop();
+        mediaPlayer->setPosition(0);
+    }
+
+    void setSource(QString source)
+    {
+        if (_source == source)
+            return;
+        _source = source;
+         if (source.isEmpty()) {
+            mediaPlayer->setMedia(QUrl());
+            return;
+        }
+        mediaPlayer->setMedia(QUrl::fromLocalFile("/opt/usr/share/" + source));
+        mediaPlayer->setVolume(_volume);
+        if (_play)
+            mediaPlayer->play();
+    }
+
+    void setVolume(int volume)
+    {
+        _volume = volume;
+        mediaPlayer->setVolume(volume);
+        emit volumeChanged(volume);
+    }
+
+    void setPosition(int position)
+    {
+        mediaPlayer->setPosition(position);
+    }
+
+signals:
+    void volumeChanged(int volume);
+
+};
+
 #include "main.moc"
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     qmlRegisterType<ShipRotation>("SpaceDebris", 1, 0, "ShipRotation");
+    qmlRegisterType<SpaceAudio>("SpaceDebris", 1, 0, "SpaceAudio");
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockLandscape);
     viewer.setResizeMode(QmlApplicationViewer::SizeRootObjectToView);
     viewer.setMainQmlFile(QLatin1String("qml/spacerace/main.qml"));
-//    viewer.showNormal();
     viewer.showFullScreen();
 
     return app.exec();
