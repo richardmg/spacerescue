@@ -18,7 +18,7 @@ Item {
         SharedScript.eraseDebrisArray();
 
         var debrisComponent = Qt.createComponent("SpaceDebris.qml");
-        var count = (SharedScript.introMode ? 20 : Math.min(18, (SharedScript.level + 2)));
+        var count = (SharedScript.introMode ? 20 : Math.min(18, (SharedScript.level)));
         if (debrisComponent.status == Component.Ready) {
             for (var i=0; i<count; ++i) {
                 var debris = debrisComponent.createObject(top);

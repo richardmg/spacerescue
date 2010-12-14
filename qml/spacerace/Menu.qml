@@ -55,7 +55,7 @@ Image {
         MouseArea {
             anchors.fill: parent
             onPressed: {
-                SharedScript.level = Math.max(1, (SharedScript.level - 1));
+                SharedScript.level = Math.max(0, (SharedScript.level - 1));
                 levelLabel.text = "Level: " + SharedScript.level;
             }
         }
