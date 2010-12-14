@@ -13,7 +13,6 @@ Rectangle {
     SpaceAudio {
         id: music
         source: "spacerace/audio/ugress.mp3"
-        volume: Math.max(menu.opacity, intro.opacity) * 100
         play: true
         onVolumeChanged: if (volume == 0) position = 0;
     }
@@ -39,6 +38,8 @@ Rectangle {
 
     function newGame()
     {
+        music.play = false;
+        music.position = 0;
         SharedScript.introMode = false;
         intro.enabled = false
         game.newGame();
@@ -50,6 +51,7 @@ Rectangle {
 
     function endGame()
     {
+        music.play = true;
         game.endGame();
         menu.opacity = 1;
         intro.opacity = 0;

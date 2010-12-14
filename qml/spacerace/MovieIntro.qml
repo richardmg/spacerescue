@@ -127,7 +127,7 @@ Rectangle {
             movieRoot.root.endGame();
             break;
         }
-            console.debug(SharedScript.gameTime)
+//            console.debug(SharedScript.gameTime)
     }
 
     Timer {

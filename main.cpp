@@ -84,9 +84,10 @@ public:
 
     void setPlay(bool play)
     {
+        if (_play == play)
+            return;
         _play = play;
         play? mediaPlayer->play() : mediaPlayer->stop();
-        mediaPlayer->setPosition(0);
     }
 
     void setSource(QString source)
