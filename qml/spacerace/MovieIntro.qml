@@ -43,27 +43,18 @@ Rectangle {
         universeZ: 3
     }
 
-    PlanetBackground {
-        id: shipTop
-        speedX: -1
-        rotation: 90
-        bgimage: "qrc:/space/img/challenger_top.png"
-    }
-
-    PlanetBackground {
-        id: shipBottom
-        speedX: -1
-        rotationSpeed: 1
-        bgimage: "qrc:/space/img/challenger_bottom.png"
+    Challenger {
+        id: challenger
+        universeX: 0
+        universeY: -50
+        speedX: -0.7
     }
 
     Astronaut {
         id: astronaut
         universeX: 130
         universeY: 100
-        speedX: -1.2
-        ship: shipTop
-        root: game.root
+        speedX: -0.8
      }
 
     UniverseBackground {
@@ -96,8 +87,7 @@ Rectangle {
         repeat: true
 
         onTriggered: {
-            shipTop.gameStep();
-            shipBottom.gameStep();
+            challenger.gameStep();
             bgStars.gameStep();
             bgSun.gameStep();
             bgEarth.gameStep();
@@ -111,10 +101,10 @@ Rectangle {
             if (SharedScript.gameTime == Number.MAX_VALUE)
                 SharedScript.gameTime = 0;
 
-//            if (SharedScript.gameTime == 300) {
-//                shipTop._speedX = -10;
-//            }
-//console.debug(SharedScript.gameTime)
+            if (SharedScript.gameTime == 320) {
+                challenger.explode();
+            }
+//            console.debug(SharedScript.gameTime)
         }
     }
 

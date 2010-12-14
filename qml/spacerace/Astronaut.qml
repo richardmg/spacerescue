@@ -14,7 +14,6 @@ Item {
     property int imageSpeed: 15
     property int _currentImageNr: SharedScript.random.next() * imageCount
 
-    property Item ship
     property Item root
 
     width:  astronaut.width
@@ -39,7 +38,7 @@ Item {
         }
         SharedScript.updateScreenPositionFor(this);
 
-        if (SharedScript.collidesWithShip(this, width/2, 0, 0)) {
+        if (root && SharedScript.collidesWithShip(this, width/2, 0, 0)) {
             opacity = 0
             root.endGame();
         }

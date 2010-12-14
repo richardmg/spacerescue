@@ -12,6 +12,9 @@ Item {
 
     property string bgimage: ""
 
+    width: planet.width
+    height: planet.height
+
     function gameStep()
     {
         universeX += speedX;

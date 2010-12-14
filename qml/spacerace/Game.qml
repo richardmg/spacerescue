@@ -53,7 +53,6 @@ Rectangle {
 
     Astronaut {
         id: astronaut
-        ship: ship
         root: game.root
      }
 
