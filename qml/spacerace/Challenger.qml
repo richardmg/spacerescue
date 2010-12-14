@@ -9,9 +9,9 @@ Item {
 
     property real speedX: 0
     property real speedY: 0
-    property real rotationSpeed: 0.1
+    property real rotationSpeed: 0.07
     property real currentRotation: 0
-    transform: Rotation { origin.x: 400; origin.y: 400; angle: currentRotation}
+    transform: Rotation { origin.x: 150; origin.y: 150; angle: currentRotation}
     smooth: true
     property string bgimage: ""
 
@@ -28,9 +28,9 @@ Item {
     function explode()
     {
         top.rotationSpeed = 2.5
-        top.speedY = -2
+        top.speedY = -1.5
         bottom.rotationSpeed = -1.5
-        bottom.speedY = 1.5
+        bottom.speedY = 1.0
     }
 
     PlanetBackground {

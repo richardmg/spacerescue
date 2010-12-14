@@ -9,7 +9,9 @@ Image {
 
     Behavior on opacity {
         SequentialAnimation {
-            PropertyAnimation {}
+            PropertyAnimation {
+                duration: 1000
+            }
         }
     }
 

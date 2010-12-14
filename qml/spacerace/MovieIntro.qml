@@ -45,16 +45,16 @@ Rectangle {
 
     Challenger {
         id: challenger
-        universeX: 0
-        universeY: -50
-        speedX: -0.7
+        universeX: 100
+        universeY: -80
+        speedX: -0.6
     }
 
     Astronaut {
         id: astronaut
-        universeX: 130
-        universeY: 100
-        speedX: -0.8
+        universeX: -100
+        universeY: -100
+        speedX: -0.5
      }
 
     UniverseBackground {
@@ -69,6 +69,37 @@ Rectangle {
         id: debris
     }
 
+    Image {
+        id: gameInfo
+        x: 50
+        y: 50
+        opacity: 0
+        source: "qrc:/space/img/gameinfo.png"
+        Behavior on opacity {
+            SequentialAnimation {
+                PropertyAnimation {
+                    duration: 4000
+                }
+            }
+        }
+    }
+
+    Image {
+        id: goodLuck
+        anchors.left: gameInfo.left
+        anchors.top: gameInfo.bottom
+        anchors.topMargin: 50
+        opacity: 0
+        source: "qrc:/space/img/goodluck.png"
+        Behavior on opacity {
+            SequentialAnimation {
+                PropertyAnimation {
+                    duration: 3000
+                }
+            }
+        }
+    }
+
     Indicator {
         id: indicator
         target: astronaut
@@ -78,6 +109,25 @@ Rectangle {
         id: mousearea
         anchors.fill: parent
         onClicked: movieRoot.root.endGame();
+    }
+
+    function updateScoreBoard()
+    {
+        switch (SharedScript.gameTime) {
+        case 495:
+            challenger.explode();
+            break;
+        case 620:
+            gameInfo.opacity = 1;
+            break;
+        case 720:
+            goodLuck.opacity = 1;
+            break;
+        case 820:
+            movieRoot.root.endGame();
+            break;
+        }
+            console.debug(SharedScript.gameTime)
     }
 
     Timer {
@@ -96,15 +146,11 @@ Rectangle {
             debris.gameStep();
             astronaut.gameStep();
             indicator.gameStep();
+            updateScoreBoard();
 
             ++SharedScript.gameTime;
             if (SharedScript.gameTime == Number.MAX_VALUE)
                 SharedScript.gameTime = 0;
-
-            if (SharedScript.gameTime == 320) {
-                challenger.explode();
-            }
-//            console.debug(SharedScript.gameTime)
         }
     }
 
@@ -116,7 +162,7 @@ Rectangle {
         Behavior on opacity {
             SequentialAnimation {
                 PropertyAnimation {
-                    duration: 3000
+                    duration: 5000
                 }
             }
         }

@@ -49,7 +49,7 @@ Item {
     function intro() {
         _warpWidth = SharedScript.screenWidth + 300;
         _warpHeight = SharedScript.screenHeight + (debris.height * 4)
-        var startX = 1800;
+        var startX = 2500;
 
         universeX = startX - (SharedScript.random.next() * _warpWidth);
         universeY = -(_warpHeight / 2) + (SharedScript.random.next() * _warpHeight);
