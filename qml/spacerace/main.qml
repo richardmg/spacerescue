@@ -19,34 +19,36 @@ Rectangle {
         id: menu
         anchors.centerIn: root
         root: root
-        opacity: 1
+        opacity: 0
     }
 
-//    MovieIntro {
-//        id: intro
-//        anchors.centerIn: root
-//        root: root
-//    }
+    MovieIntro {
+        id: intro
+        anchors.centerIn: root
+        root: root
+    }
 
     function newGame()
     {
-        state = "gameState";
+        SharedScript.introMode = false;
+        intro.enabled = false
         game.newGame();
         menu.opacity = 0;
+        intro.opacity = 0;
         game.opacity = 1;
         game.focus = true;
     }
 
     function endGame()
     {
-        state = "menuState";
         game.endGame();
         menu.opacity = 1;
+        intro.opacity = 0;
+        SharedScript.introMode = false;
         menu.rescueTimer.hours = game.rescueTimer.hours
         menu.rescueTimer.minutes = game.rescueTimer.minutes
         menu.rescueTimer.seconds = game.rescueTimer.seconds
         menu.rescueTimer.milliseconds = game.rescueTimer.milliseconds
-        //        intro.opacity = 0;
     }
 
 }

@@ -19,6 +19,7 @@ Item {
     property real _speedY: 0
 
     property variant ship
+    property bool introMode: false;
 
     width:  debris.width
     height: debris.height
@@ -40,6 +41,21 @@ Item {
             else
                 speedMaxY = (SharedScript.level/100) * 5
         }
+
+        _speedX = (0.4 + (SharedScript.random.next() * 0.6)) * speedMaxX
+        _speedY = (0.4 + (SharedScript.random.next() * 0.6)) * speedMaxY * ((SharedScript.random.next() > 0.5) ? 1 : -1);
+    }
+
+    function intro() {
+        _warpWidth = SharedScript.screenWidth + 300;
+        _warpHeight = SharedScript.screenHeight + (debris.height * 4)
+        var startX = 1800;
+
+        universeX = startX - (SharedScript.random.next() * _warpWidth);
+        universeY = -(_warpHeight / 2) + (SharedScript.random.next() * _warpHeight);
+
+        var speedMaxX = -5
+        var speedMaxY = 1
 
         _speedX = (0.4 + (SharedScript.random.next() * 0.6)) * speedMaxX
         _speedY = (0.4 + (SharedScript.random.next() * 0.6)) * speedMaxY * ((SharedScript.random.next() > 0.5) ? 1 : -1);
@@ -80,8 +96,13 @@ Item {
             ship.collideWithDebris();
     }
 
+    function setIntroMode(mode) {
+        universe.introMode = mode;
+        console.debug(universe.introMode)
+    }
+
     Image {
         id: debris
-        onHeightChanged: parent.reset();
+        onHeightChanged: (SharedScript.introMode === true) ? universe.intro() : universe.reset();
     }
 }

@@ -7,20 +7,20 @@ var cameraY = 0;
 var screenWidth = 0;
 var screenHeight = 0;
 var level = 5
-var seed = 0;
+var seed = 10;
 var shipCollisionCenterX = 0;
 var shipCollisionCenterY = 0;
 var _shipCollisionRadius = 20;
+var introMode = true;
 
 var random = RandomNumberGenerator(1);
 var gateArray = [];
 var debrisArray = [];
 
-function reset()
+function reset(seedKey)
 {
     gameTime = 0;
     clockTime = new Date();
-    var seedKey = level;
     seed = 2345678901 + (seedKey * 0xFFFFFF) + (seedKey * 0xFFFF);
 }
 

@@ -49,5 +49,7 @@
         <file>img/hal_newgame.png</file>
         <file>img/levelarrowup.png</file>
         <file>img/levelarrowdown.png</file>
+        <file>img/challenger_bottom.png</file>
+        <file>img/challenger_top.png</file>
     </qresource>
 </RCC>

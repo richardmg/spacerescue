@@ -129,7 +129,7 @@ Rectangle {
 
     function newGame()
     {
-        SharedScript.reset();
+        SharedScript.reset(SharedScript.level);
         ship.reset();
         debris.reset();
         astronaut.reset();

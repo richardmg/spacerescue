@@ -21,26 +21,18 @@ Rectangle {
 
     PlanetBackground {
         id: bgSun
-        universeX: 600
-        universeY: -150
+        universeX: 200
+        universeY: -200
         bgimage: "qrc:/space/img/sun.png"
         universeZ: 0.11
     }
 
     PlanetBackground {
         id: bgEarth
-        universeX: 250
-        universeY: 0
+        universeX: -350
+        universeY: 20
         bgimage: "qrc:/space/img/earth.png"
         universeZ: 0.2
-    }
-
-    PlanetBackground {
-        id: bgMoon
-        universeX: 1100
-        universeY: 100
-        bgimage: "qrc:/space/img/moon.png"
-        universeZ: 0.25
     }
 
     UniverseBackground {
@@ -51,20 +43,36 @@ Rectangle {
         universeZ: 3
     }
 
-    Astronaut {
-        id: astronaut
-        ship: ship
-        root: game.root
-     }
-
     Spaceship {
-        id: ship
-        x: movieRoot.width / 2
-        y: movieRoot.height / 2
+        id: shipTop
+        x: movieRoot.width / 3
+        y: movieRoot.height / 5
+        _speedX: -1
+        source: "qrc:/space/img/challenger_top.png"
         mouseControlled: mousearea.pressed
         onUniverseXChanged: SharedScript.cameraX = universeX
         onUniverseYChanged: SharedScript.cameraY = universeY;
     }
+
+    Spaceship {
+        id: shipBottom
+        x: shipTop.x - 10
+        y: shipTop.y + 43
+        _speedX: -1
+        source: "qrc:/space/img/challenger_bottom.png"
+        mouseControlled: mousearea.pressed
+        onUniverseXChanged: SharedScript.cameraX = universeX
+        onUniverseYChanged: SharedScript.cameraY = universeY;
+    }
+
+    Astronaut {
+        id: astronaut
+        universeX: 130
+        universeY: 100
+        speedX: -1.2
+        ship: shipTop
+        root: game.root
+     }
 
     UniverseBackground {
         id: bgGrayFog
@@ -76,7 +84,7 @@ Rectangle {
 
     SpaceDebrisContainer {
         id: debris
-        ship: ship
+        ship: shipTop
     }
 
     Indicator {
@@ -93,15 +101,15 @@ Rectangle {
     Timer {
         id: gameTimer
         interval: 50;
-        running: visible;
+        running: opacity > 0;
         repeat: true
 
         onTriggered: {
-            ship.gameStep();
+            shipTop.gameStep();
+            shipBottom.gameStep();
             bgStars.gameStep();
             bgSun.gameStep();
             bgEarth.gameStep();
-            bgMoon.gameStep();
             bgBlueFog.gameStep();
             bgGrayFog.gameStep();
             debris.gameStep();
@@ -111,6 +119,11 @@ Rectangle {
             ++SharedScript.gameTime;
             if (SharedScript.gameTime == Number.MAX_VALUE)
                 SharedScript.gameTime = 0;
+
+//            if (SharedScript.gameTime == 300) {
+//                shipTop._speedX = -10;
+//            }
+//console.debug(SharedScript.gameTime)
         }
     }
 

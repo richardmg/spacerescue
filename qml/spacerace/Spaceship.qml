@@ -49,8 +49,9 @@ Image {
     }
 
     function setUniverseDirection(x, y) {
-        if (!ship.mouseControlled || ship._collisionTime)
+        if (!ship.mouseControlled || ship._collisionTime || SharedScript.introMode)
             return;
+
         var halfShipHeight = ship.height / 2;
         var halfShipWidth = ship.width / 2;
         var relX = ship.pos.x + halfShipWidth - x;
@@ -71,7 +72,7 @@ Image {
         enabled: ship.mouseControlled == false;
 
         onRotationXChanged: {
-            if (ship._collisionTime)
+            if (ship._collisionTime || SharedScript.introMode)
                 return;
             var thrustRange = ship._rotationFullThrust - ship._rotationNoThrust;
             var t = ((rotationX - ship._rotationNoThrust) / thrustRange);
@@ -81,7 +82,7 @@ Image {
         }
 
         onRotationYChanged: {
-            if (ship._collisionTime)
+            if (ship._collisionTime || SharedScript.introMode)
                 return;
             var r = rotationY / ship._rotationMaxBank;
             if (r < -1) r = -1;
@@ -120,7 +121,7 @@ Image {
 
     function collideWithDebris()
     {
-        if (ship._collisionTime)
+        if (ship._collisionTime || SharedScript.introMode)
             return;
 
         ship._collisionTime = SharedScript.gameTime;
