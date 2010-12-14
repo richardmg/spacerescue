@@ -6,10 +6,17 @@ Item {
     property real universeY: 0
     property real universeZ: 1
 
+    property real speedX: 0
+    property real speedY: 0
+    property real rotationSpeed: 0
+
     property string bgimage: ""
 
     function gameStep()
     {
+        universeX += speedX;
+        universeY += speedY;
+        rotation += rotationSpeed;
         SharedScript.updateScreenPositionFor(this);
     }
 

@@ -92,7 +92,7 @@ Item {
         }
         SharedScript.updateScreenPositionFor(this);
 
-        if (!ship.inCollision && SharedScript.collidesWithShip(this, width/3, 0, 0))
+        if (ship && !ship.inCollision && SharedScript.collidesWithShip(this, width/3, 0, 0))
             ship.collideWithDebris();
     }
 

@@ -1,4 +1,5 @@
 import Qt 4.7
+import SpaceDebris 1.0
 import "global.js" as SharedScript
 
 Rectangle {
@@ -8,6 +9,14 @@ Rectangle {
     onWidthChanged: SharedScript.screenWidth = width;
     onHeightChanged: SharedScript.screenHeight = height;
     color: "black"
+
+    SpaceAudio {
+        id: music
+        source: "spacerace/audio/ugress.mp3"
+        volume: Math.max(menu.opacity, intro.opacity) * 100
+        play: true
+        onVolumeChanged: if (volume == 0) position = 0;
+    }
 
     Game {
         id: game

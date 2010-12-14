@@ -43,26 +43,18 @@ Rectangle {
         universeZ: 3
     }
 
-    Spaceship {
+    PlanetBackground {
         id: shipTop
-        x: movieRoot.width / 3
-        y: movieRoot.height / 5
-        _speedX: -1
-        source: "qrc:/space/img/challenger_top.png"
-        mouseControlled: mousearea.pressed
-        onUniverseXChanged: SharedScript.cameraX = universeX
-        onUniverseYChanged: SharedScript.cameraY = universeY;
+        speedX: -1
+        rotation: 90
+        bgimage: "qrc:/space/img/challenger_top.png"
     }
 
-    Spaceship {
+    PlanetBackground {
         id: shipBottom
-        x: shipTop.x - 10
-        y: shipTop.y + 43
-        _speedX: -1
-        source: "qrc:/space/img/challenger_bottom.png"
-        mouseControlled: mousearea.pressed
-        onUniverseXChanged: SharedScript.cameraX = universeX
-        onUniverseYChanged: SharedScript.cameraY = universeY;
+        speedX: -1
+        rotationSpeed: 1
+        bgimage: "qrc:/space/img/challenger_bottom.png"
     }
 
     Astronaut {
@@ -84,7 +76,6 @@ Rectangle {
 
     SpaceDebrisContainer {
         id: debris
-        ship: shipTop
     }
 
     Indicator {
