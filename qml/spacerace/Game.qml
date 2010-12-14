@@ -19,7 +19,7 @@ Rectangle {
         universeZ: 0.1
     }
 
-    PlanetBackground {
+    SpaceBackground {
         id: bgSun
         universeX: 600
         universeY: -150
@@ -27,7 +27,7 @@ Rectangle {
         universeZ: 0.11
     }
 
-    PlanetBackground {
+    SpaceBackground {
         id: bgEarth
         universeX: 250
         universeY: 0
@@ -35,7 +35,7 @@ Rectangle {
         universeZ: 0.2
     }
 
-    PlanetBackground {
+    SpaceBackground {
         id: bgMoon
         universeX: 1100
         universeY: 100
@@ -51,7 +51,18 @@ Rectangle {
         universeZ: 3
     }
 
-    PlanetBackground {
+    SpaceBackground {
+        id: spacestation
+        universeX: -350
+        universeY: -150
+        universeZ: 0.6
+        rotationSpeed: -0.04
+        imageCount: 2
+        imageSpeed: 50
+        bgimage: "qrc:/space/img/spacestation"
+    }
+
+    SpaceBackground {
         id: challenger_top
         universeX: 1900
         universeY: -300
@@ -60,7 +71,7 @@ Rectangle {
         bgimage: "qrc:/space/img/challenger_top.png"
     }
 
-    PlanetBackground {
+    SpaceBackground {
         id: challenger_bottom
         universeX: 1500
         universeY: 200
@@ -135,6 +146,7 @@ Rectangle {
             rescueTimer.gameStep();
             challenger_top.gameStep();
             challenger_bottom.gameStep();
+            spacestation.gameStep();
 
             ++SharedScript.gameTime;
             if (SharedScript.gameTime == Number.MAX_VALUE)

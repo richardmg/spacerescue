@@ -19,7 +19,7 @@ Rectangle {
         universeZ: 0.1
     }
 
-    PlanetBackground {
+    SpaceBackground {
         id: bgSun
         universeX: 200
         universeY: -200
@@ -27,7 +27,7 @@ Rectangle {
         universeZ: 0.11
     }
 
-    PlanetBackground {
+    SpaceBackground {
         id: bgEarth
         universeX: -350
         universeY: 20
