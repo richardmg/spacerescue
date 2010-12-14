@@ -111,7 +111,7 @@ Rectangle {
         onClicked: movieRoot.root.endGame();
     }
 
-    function updateScoreBoard()
+    function checkScoreBoard()
     {
         switch (SharedScript.gameTime) {
         case 495:
@@ -146,7 +146,7 @@ Rectangle {
             debris.gameStep();
             astronaut.gameStep();
             indicator.gameStep();
-            updateScoreBoard();
+            checkScoreBoard();
 
             ++SharedScript.gameTime;
             if (SharedScript.gameTime == Number.MAX_VALUE)

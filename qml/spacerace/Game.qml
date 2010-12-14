@@ -51,6 +51,24 @@ Rectangle {
         universeZ: 3
     }
 
+    PlanetBackground {
+        id: challenger_top
+        universeX: 1900
+        universeY: -300
+        universeZ: 0.5
+        rotationSpeed: 1
+        bgimage: "qrc:/space/img/challenger_top.png"
+    }
+
+    PlanetBackground {
+        id: challenger_bottom
+        universeX: 1500
+        universeY: 200
+        universeZ: 0.5
+        rotationSpeed: -1
+        bgimage: "qrc:/space/img/challenger_bottom.png"
+    }
+
     Astronaut {
         id: astronaut
         root: game.root
@@ -115,6 +133,8 @@ Rectangle {
             astronaut.gameStep();
             indicator.gameStep();
             rescueTimer.gameStep();
+            challenger_top.gameStep();
+            challenger_bottom.gameStep();
 
             ++SharedScript.gameTime;
             if (SharedScript.gameTime == Number.MAX_VALUE)
