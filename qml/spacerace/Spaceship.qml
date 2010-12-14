@@ -13,8 +13,8 @@ Image {
     property real directionInRadians: Math.PI/2     // orientation of ship
     property bool mouseControlled: false            // ship controlled by mouse or sensor
 
-    property real _rotationNoThrust: 43             // x rotation where ship have no thrust
-    property real _rotationFullThrust: 28           // x rotation where ship have full thrust
+    property real _rotationNoThrust: 38             // x rotation where ship have no thrust
+    property real _rotationFullThrust: 23           // x rotation where ship have full thrust
     property real _rotationMaxBank: 50              // y rotation when ship rotate the most
     property real _directionAtMaxBank: Math.PI/9    // orientation of ship at _rotationMaxBank
     property real _speedX: 0                        // current speed along x-axis
