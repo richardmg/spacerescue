@@ -85,7 +85,7 @@ Rectangle {
         case 550:
             challenger.explode();
             break;
-        case 820:
+        case 790:
             movieRoot.root.endGame();
             break;
         }
