@@ -51,9 +51,8 @@
         <file>img/levelarrowdown.png</file>
         <file>img/challenger_bottom.png</file>
         <file>img/challenger_top.png</file>
-        <file>img/gameinfo.png</file>
-        <file>img/goodluck.png</file>
         <file>img/spacestation0.png</file>
         <file>img/spacestation1.png</file>
+        <file>img/gameinfo.png</file>
     </qresource>
 </RCC>

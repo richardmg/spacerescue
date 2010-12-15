@@ -68,37 +68,6 @@ Rectangle {
         id: astroids
     }
 
-    Image {
-        id: gameInfo
-        x: 50
-        y: 50
-        opacity: 0
-        source: "qrc:/space/img/gameinfo.png"
-        Behavior on opacity {
-            SequentialAnimation {
-                PropertyAnimation {
-                    duration: 4000
-                }
-            }
-        }
-    }
-
-    Image {
-        id: goodLuck
-        anchors.left: gameInfo.left
-        anchors.top: gameInfo.bottom
-        anchors.topMargin: 50
-        opacity: 0
-        source: "qrc:/space/img/goodluck.png"
-        Behavior on opacity {
-            SequentialAnimation {
-                PropertyAnimation {
-                    duration: 3000
-                }
-            }
-        }
-    }
-
     Indicator {
         id: indicator
         target: astronaut
@@ -115,12 +84,6 @@ Rectangle {
         switch (SharedScript.gameTime) {
         case 550:
             challenger.explode();
-            break;
-        case 645:
-            gameInfo.opacity = 1;
-            break;
-        case 740:
-            goodLuck.opacity = 1;
             break;
         case 820:
             movieRoot.root.endGame();

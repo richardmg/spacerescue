@@ -18,6 +18,7 @@ Text {
     function reset()
     {
         SharedScript.clockTime = new Date();
+        gameStep();
     }
 
     function format(value, maxLength)

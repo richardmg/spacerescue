@@ -115,6 +115,10 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         onPositionChanged: ship.setUniverseDirection(mouse.x, mouse.y)
+        onClicked: if (mousearea.mouseX < 140 && mousearea.mouseY < 50) {
+                       rescueTimer.reset();
+                       gameRoot.root.endGame();
+                   }
     }
 
     RescueTimer {
@@ -122,6 +126,35 @@ Rectangle {
         x: 10
         y: 10
         opacity: 0;
+    }
+
+    Image {
+        id: gameInfo
+        anchors.bottom: parent.bottom
+        x: 20
+        opacity: 0
+        source: "qrc:/space/img/gameinfo.png"
+        Behavior on opacity {
+            SequentialAnimation {
+                PropertyAnimation {
+                    duration: 1000
+                }
+            }
+        }
+    }
+
+    function checkScoreBoard()
+    {
+        if (SharedScript.level <= 3) {
+            switch (SharedScript.gameTime) {
+            case 20:
+                gameInfo.opacity = 1;
+                break;
+            case 110:
+                gameInfo.opacity = 0;
+                break;
+            }
+        }
     }
 
     Timer {
@@ -145,6 +178,7 @@ Rectangle {
             challenger_top.gameStep();
             challenger_bottom.gameStep();
             spacestation.gameStep();
+            checkScoreBoard();
 
             ++SharedScript.gameTime;
             if (SharedScript.gameTime == Number.MAX_VALUE)
@@ -153,6 +187,7 @@ Rectangle {
     }
 
     Keys.onPressed: {
+        rescueTimer.reset();
         gameRoot.root.endGame()
     }
 
