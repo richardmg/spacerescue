@@ -33,6 +33,7 @@ Item {
         }
 
         SharedScript.updateScreenPositionFor(this);
+//        console.debug(bgimage, universeX, universeY)
     }
     function gameStep() {spaceDebris_gameStep();}
 

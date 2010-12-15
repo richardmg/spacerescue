@@ -6,8 +6,6 @@ Rectangle {
     color: "#000000"
     width: parent.width
     height: parent.height
-    onWidthChanged: astroids.reset();
-    onHeightChanged: astroids.reset();
     focus: opacity > 0;
 
     property Item root

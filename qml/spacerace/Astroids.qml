@@ -3,7 +3,7 @@ import "global.js" as SharedScript
 
 Item {
     id: top
-    property variant ship
+    property Item ship
 
     function gameStep()
     {

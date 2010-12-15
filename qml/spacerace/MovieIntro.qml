@@ -6,8 +6,7 @@ Rectangle {
     color: "#000000"
     width: parent.width
     height: parent.height
-    onWidthChanged: astroids.reset();
-    onHeightChanged: astroids.reset();
+    onHeightChanged: if (height != 10) astroids.reset();
 
     property Item root
 
@@ -114,20 +113,20 @@ Rectangle {
     function checkScoreBoard()
     {
         switch (SharedScript.gameTime) {
-        case 495:
+        case 550:
             challenger.explode();
             break;
-        case 620:
+        case 645:
             gameInfo.opacity = 1;
             break;
-        case 720:
+        case 740:
             goodLuck.opacity = 1;
             break;
         case 820:
             movieRoot.root.endGame();
             break;
         }
-//            console.debug(SharedScript.gameTime)
+//        console.debug(SharedScript.gameTime)
     }
 
     Timer {

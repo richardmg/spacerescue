@@ -7,7 +7,7 @@ SpaceDebris {
     property real _warpWidth: -1
     property real _warpHeight: -1
 
-    property variant ship
+    property Item ship
     property bool introMode: false;
 
     onHeightChanged: (SharedScript.introMode === true) ? intro() : reset();

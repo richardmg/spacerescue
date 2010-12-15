@@ -4,8 +4,8 @@ import "global.js" as SharedScript
 
 Rectangle {
     id: root
-    width: 480
-    height: 800
+    width: 10
+    height: 10
     onWidthChanged: SharedScript.screenWidth = width;
     onHeightChanged: SharedScript.screenHeight = height;
     color: "black"
