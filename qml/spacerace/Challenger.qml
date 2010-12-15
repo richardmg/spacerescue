@@ -33,7 +33,7 @@ Item {
         bottom.speedY = 1.0
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: top
         universeX: challenger.universeX
         universeY: challenger.universeY
@@ -42,7 +42,7 @@ Item {
         bgimage: "qrc:/space/img/challenger_top.png"
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: bottom
         universeX: challenger.universeX + 80
         universeY: challenger.universeY - 37

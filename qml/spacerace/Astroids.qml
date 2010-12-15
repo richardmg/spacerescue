@@ -17,7 +17,7 @@ Item {
     {
         SharedScript.eraseDebrisArray();
 
-        var debrisComponent = Qt.createComponent("SpaceDebris.qml");
+        var debrisComponent = Qt.createComponent("SpaceDebrisThatWarps.qml");
         var count = (SharedScript.introMode ? 20 : Math.min(18, (SharedScript.level)));
         if (debrisComponent.status == Component.Ready) {
             for (var i=0; i<count; ++i) {

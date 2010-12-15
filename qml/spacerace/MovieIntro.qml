@@ -6,8 +6,8 @@ Rectangle {
     color: "#000000"
     width: parent.width
     height: parent.height
-    onWidthChanged: debris.reset();
-    onHeightChanged: debris.reset();
+    onWidthChanged: astroids.reset();
+    onHeightChanged: astroids.reset();
 
     property Item root
 
@@ -19,7 +19,7 @@ Rectangle {
         universeZ: 0.1
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: bgSun
         universeX: 200
         universeY: -200
@@ -27,7 +27,7 @@ Rectangle {
         universeZ: 0.11
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: bgEarth
         universeX: -350
         universeY: 20
@@ -65,8 +65,8 @@ Rectangle {
         universeZ: 6
     }
 
-    SpaceDebrisContainer {
-        id: debris
+    Astroids {
+        id: astroids
     }
 
     Image {
@@ -143,7 +143,7 @@ Rectangle {
             bgEarth.gameStep();
             bgBlueFog.gameStep();
             bgGrayFog.gameStep();
-            debris.gameStep();
+            astroids.gameStep();
             astronaut.gameStep();
             indicator.gameStep();
             checkScoreBoard();

@@ -6,8 +6,8 @@ Rectangle {
     color: "#000000"
     width: parent.width
     height: parent.height
-    onWidthChanged: debris.reset();
-    onHeightChanged: debris.reset();
+    onWidthChanged: astroids.reset();
+    onHeightChanged: astroids.reset();
     focus: opacity > 0;
 
     property Item root
@@ -19,7 +19,7 @@ Rectangle {
         universeZ: 0.1
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: bgSun
         universeX: 600
         universeY: -150
@@ -27,7 +27,7 @@ Rectangle {
         universeZ: 0.11
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: bgEarth
         universeX: 250
         universeY: 0
@@ -35,7 +35,7 @@ Rectangle {
         universeZ: 0.2
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: bgMoon
         universeX: 1100
         universeY: 100
@@ -51,7 +51,7 @@ Rectangle {
         universeZ: 3
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: spacestation
         universeX: -350
         universeY: -150
@@ -62,7 +62,7 @@ Rectangle {
         bgimage: "qrc:/space/img/spacestation"
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: challenger_top
         universeX: 1900
         universeY: -300
@@ -71,7 +71,7 @@ Rectangle {
         bgimage: "qrc:/space/img/challenger_top.png"
     }
 
-    SpaceBackground {
+    SpaceDebris {
         id: challenger_bottom
         universeX: 1500
         universeY: 200
@@ -102,8 +102,8 @@ Rectangle {
         universeZ: 6
     }
 
-    SpaceDebrisContainer {
-        id: debris
+    Astroids {
+        id: astroids
         ship: ship
     }
 
@@ -140,7 +140,7 @@ Rectangle {
             bgMoon.gameStep();
             bgBlueFog.gameStep();
             bgGrayFog.gameStep();
-            debris.gameStep();
+            astroids.gameStep();
             astronaut.gameStep();
             indicator.gameStep();
             rescueTimer.gameStep();
@@ -162,7 +162,7 @@ Rectangle {
     {
         SharedScript.reset(SharedScript.level);
         ship.reset();
-        debris.reset();
+        astroids.reset();
         astronaut.reset();
         rescueTimer.reset();
         rescueTimer.running = true;
