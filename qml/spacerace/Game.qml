@@ -2,14 +2,15 @@ import Qt 4.7
 import "global.js" as SharedScript
 
 Rectangle {
-    id: gameRoot
+    id: localRoot
     color: "#000000"
-    width: parent.width
-    height: parent.height
+    width: _root.width
+    height: _root.height
     focus: opacity > 0;
 
-    property Item root
+    property Item _root: root
     property alias rescueTimer: rescueTimer
+    property alias ship: ship
 
     UniverseBackground {
         id: bgStars
@@ -80,16 +81,14 @@ Rectangle {
 
     Astronaut {
         id: astronaut
-        root: game.root
+        ship: ship
      }
 
     Spaceship {
         id: ship
-        x: gameRoot.width / 2
-        y: gameRoot.height / 2
+        x: localRoot.width / 2
+        y: localRoot.height / 2
         mouseControlled: mousearea.pressed
-        onUniverseXChanged: SharedScript.cameraX = universeX
-        onUniverseYChanged: SharedScript.cameraY = universeY;
     }
 
     UniverseBackground {
@@ -117,7 +116,7 @@ Rectangle {
         onPositionChanged: ship.setUniverseDirection(mouse.x, mouse.y)
         onClicked: if (mousearea.mouseX < 140 && mousearea.mouseY < 50) {
                        rescueTimer.reset();
-                       gameRoot.root.endGame();
+                       _root.endGame();
                    }
     }
 
@@ -145,8 +144,8 @@ Rectangle {
 
     function checkScoreBoard()
     {
-        if (SharedScript.level <= 3) {
-            switch (SharedScript.gameTime) {
+        if (_root.level <= 3) {
+            switch (_root.gameTime) {
             case 20:
                 gameInfo.opacity = 1;
                 break;
@@ -180,20 +179,19 @@ Rectangle {
             spacestation.gameStep();
             checkScoreBoard();
 
-            ++SharedScript.gameTime;
-            if (SharedScript.gameTime == Number.MAX_VALUE)
-                SharedScript.gameTime = 0;
+            ++_root.gameTime;
+            if (_root.gameTime == Number.MAX_VALUE)
+                _root.gameTime = 0;
         }
     }
 
     Keys.onPressed: {
         rescueTimer.reset();
-        gameRoot.root.endGame()
+        _root.endGame()
     }
 
     function newGame()
     {
-        SharedScript.reset(SharedScript.level);
         ship.reset();
         astroids.reset();
         astronaut.reset();
@@ -208,5 +206,6 @@ Rectangle {
     {
         gameTimer.running = false;
         rescueTimer.running = false;
+        gameInfo.opacity = 0;
     }
 }

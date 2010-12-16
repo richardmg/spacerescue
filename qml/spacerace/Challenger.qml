@@ -1,11 +1,8 @@
 import Qt 4.7
 import "global.js" as SharedScript
 
-Item {
+GameObject {
     id: challenger
-    property real universeX: 0
-    property real universeY: 0
-    property real universeZ: 1
 
     property real speedX: 0
     property real speedY: 0

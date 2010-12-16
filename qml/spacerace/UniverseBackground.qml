@@ -1,7 +1,7 @@
 import Qt 4.7
 import "global.js" as SharedScript
 
-Item {
+GameObject {
     property real universeX: 0
     property real universeY: 0
     property real universeZ: 1
@@ -20,8 +20,8 @@ Item {
         universeY += windY;
 
         // Calculate from universe position to screen position:
-        var posX = (SharedScript.cameraX + universeX) * universeZ;
-        var posY = (SharedScript.cameraY + universeY) * universeZ;
+        var posX = (_root.cameraX + universeX) * universeZ;
+        var posY = (_root.cameraY + universeY) * universeZ;
         var tileX = Math.round((posX / bg11.width) - 0.5);
         var tileY = Math.round((posY / bg11.height) - 0.5);
 

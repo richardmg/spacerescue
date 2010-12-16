@@ -6,6 +6,7 @@ Image {
     source: "qrc:/space/img/arrow.png"
     opacity: 0
 
+    property Item _root: root
     property variant target
     property bool visibleOnlyWhenOutsideScreen: true
 
@@ -18,15 +19,15 @@ Image {
     function gameStep()
     {
         // update indicator:
-        var relX = target.universeX - SharedScript.cameraX;
-        var relY = target.universeY - SharedScript.cameraY;
+        var relX = target.universeX - _root.cameraX;
+        var relY = target.universeY - _root.cameraY;
         var hotspotX = -((width - target.width) /2 );
         var hotspotY = -((height - target.height) /2);
 
-        var onTargetX = (SharedScript.screenWidth / 2) + relX + hotspotX;
-        var onTargetY = (SharedScript.screenHeight / 2) + relY + hotspotY;
-        var screenBorderRight = SharedScript.screenWidth - width;
-        var screenBorderBottom = SharedScript.screenHeight - height;
+        var onTargetX = (_root.width / 2) + relX + hotspotX;
+        var onTargetY = (_root.height / 2) + relY + hotspotY;
+        var screenBorderRight = _root.width - width;
+        var screenBorderBottom = _root.height - height;
 
         var newX = Math.max(0, Math.min(onTargetX, screenBorderRight));
         var newY = Math.max(0, Math.min(onTargetY, screenBorderBottom));

@@ -8,7 +8,7 @@ Rectangle {
     height: parent.height
     onHeightChanged: if (height != 10) astroids.reset();
 
-    property Item root
+    property Item _root: root
 
     Component.onCompleted: curtain.opacity = 0;
 
@@ -76,20 +76,20 @@ Rectangle {
     MouseArea {
         id: mousearea
         anchors.fill: parent
-        onClicked: movieRoot.root.endGame();
+        onClicked: _root.endGame();
     }
 
     function checkScoreBoard()
     {
-        switch (SharedScript.gameTime) {
+        switch (_root.gameTime) {
         case 550:
             challenger.explode();
             break;
         case 790:
-            movieRoot.root.endGame();
+            _root.endGame();
             break;
         }
-//        console.debug(SharedScript.gameTime)
+//        console.debug(_root.gameTime)
     }
 
     Timer {
@@ -110,9 +110,9 @@ Rectangle {
             indicator.gameStep();
             checkScoreBoard();
 
-            ++SharedScript.gameTime;
-            if (SharedScript.gameTime == Number.MAX_VALUE)
-                SharedScript.gameTime = 0;
+            ++_root.gameTime;
+            if (_root.gameTime == Number.MAX_VALUE)
+                _root.gameTime = 0;
         }
     }
 

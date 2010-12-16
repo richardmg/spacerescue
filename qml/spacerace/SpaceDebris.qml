@@ -1,11 +1,8 @@
 import Qt 4.7
 import "global.js" as SharedScript
 
-Item {
-    property real universeX: 0
-    property real universeY: 0
-    property real universeZ: 1
-
+GameObject {
+    id: localRoot
     property real speedX: 0
     property real speedY: 0
     property real rotationSpeed: 0
@@ -25,15 +22,14 @@ Item {
         universeY += speedY;
         rotation += rotationSpeed;
 
-        if (imageCount > 0 && (SharedScript.gameTime % imageSpeed) == 0) {
+        if (imageCount > 0 && (_root.gameTime % imageSpeed) == 0) {
             var nr = _currentImageNr + 1;
             if (nr > imageCount -1 ) nr = 0;
             _currentImageNr = nr;
             image.source = bgimage + _currentImageNr + ".png";
         }
 
-        SharedScript.updateScreenPositionFor(this);
-//        console.debug(bgimage, universeX, universeY)
+        updateScreenPosition();
     }
     function gameStep() {spaceDebris_gameStep();}
 

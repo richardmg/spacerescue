@@ -3,7 +3,7 @@ import "global.js" as SharedScript
 
 Image {
     id: menu
-    property Item root
+    property Item _root: root
     property Item rescueTimer: menuTimer
     source: "qrc:/space/img/menu.png"
 
@@ -57,8 +57,8 @@ Image {
         MouseArea {
             anchors.fill: parent
             onPressed: {
-                SharedScript.level = Math.max(0, (SharedScript.level - 1));
-                levelLabel.text = "Level: " + SharedScript.level;
+                _root.level = Math.max(0, (_root.level - 1));
+                levelLabel.text = "Level: " + _root.level;
             }
         }
     }
@@ -70,8 +70,8 @@ Image {
         MouseArea {
             anchors.fill: parent
             onPressed: {
-                SharedScript.level++;
-                levelLabel.text = "Level: " + SharedScript.level;
+                _root.level++;
+                levelLabel.text = "Level: " + _root.level;
             }
         }
     }
@@ -93,7 +93,7 @@ Image {
         anchors.topMargin: 10
         font.pointSize: 32
         font.bold: true
-        text: "Level: " + SharedScript.level;
+        text: "Level: " + _root.level;
         color: "red"
     }
 

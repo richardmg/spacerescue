@@ -1,28 +1,10 @@
 .pragma library
 
-var gameTime = 0;
 var clockTime;
-var cameraX = 0;
-var cameraY = 0;
-var screenWidth = 0;
-var screenHeight = 0;
-var level = 3
 var seed = 10;
-var shipCollisionCenterX = 0;
-var shipCollisionCenterY = 0;
-var _shipCollisionRadius = 20;
-var introMode = true;
 
 var random = RandomNumberGenerator(1);
-var gateArray = [];
 var debrisArray = [];
-
-function reset(seedKey)
-{
-    gameTime = 0;
-    clockTime = new Date();
-    seed = 2345678901 + (seedKey * 0xFFFFFF) + (seedKey * 0xFFFF);
-}
 
 function eraseDebrisArray()
 {
@@ -33,27 +15,11 @@ function eraseDebrisArray()
     debrisArray = [];
 }
 
-function updateScreenPositionFor(targetItem)
+// My own random number generator that is deterministic (takes a seed)
+function reset(seedKey)
 {
-    // Calculate from universe position to screen position:
-    var posX = cameraX * targetItem.universeZ;
-    var posY = cameraY * targetItem.universeZ;
-    targetItem.x = targetItem.universeX - posX + (screenWidth / 2);
-    targetItem.y = targetItem.universeY - posY + (screenHeight / 2);
-}
-
-function collidesWithShip(targetItem, radius, shiftX, shiftY)
-{
-    var k1 = shipCollisionCenterX - (shiftX + targetItem.universeX + (targetItem.width / 2));
-    var k2 = shipCollisionCenterY - (shiftY + targetItem.universeY + (targetItem.height / 2));
-    var minimumCollisionDistance = radius + _shipCollisionRadius
-    if (k1 > minimumCollisionDistance)
-        return false;
-    if (k2 > minimumCollisionDistance)
-        return false;
-    if (Math.sqrt((k1 * k1) + (k2 * k2)) < minimumCollisionDistance)
-        return true;
-    return false;
+    clockTime = new Date();
+    seed = 2345678901 + (seedKey * 0xFFFFFF) + (seedKey * 0xFFFF);
 }
 
 function nextRandomNumber(){
@@ -76,3 +42,4 @@ function RandomNumberGenerator(seed){
     this.next = nextRandomNumber;
     return this;
 }
+///////////////////////////////////////////////////////////////////////

@@ -4,11 +4,17 @@ import "global.js" as SharedScript
 
 Rectangle {
     id: root
+    color: "black"
     width: 10
     height: 10
-    onWidthChanged: SharedScript.screenWidth = width;
-    onHeightChanged: SharedScript.screenHeight = height;
-    color: "black"
+
+    // Global variables:
+    property bool introMode: true;
+    property real cameraX: game.ship.universeX
+    property real cameraY: game.ship.universeY
+    property int gameTime: 0
+    property int level: 3
+    /////////////////////////////////////////////
 
     SpaceAudio {
         id: music
@@ -19,28 +25,27 @@ Rectangle {
 
     Game {
         id: game
-        root: root
         opacity: 0
     }
 
     Menu {
         id: menu
         anchors.centerIn: root
-        root: root
         opacity: 0
     }
 
     MovieIntro {
         id: intro
         anchors.centerIn: root
-        root: root
     }
 
     function newGame()
     {
+        SharedScript.reset(root.level);
+        root.gameTime = 0;
         music.play = false;
         music.position = 0;
-        SharedScript.introMode = false;
+        root.introMode = false;
         intro.enabled = false
         game.newGame();
         menu.opacity = 0;
@@ -55,7 +60,7 @@ Rectangle {
         game.endGame();
         menu.opacity = 1;
         intro.opacity = 0;
-        SharedScript.introMode = false;
+        root.introMode = false;
         menu.rescueTimer.hours = game.rescueTimer.hours
         menu.rescueTimer.minutes = game.rescueTimer.minutes
         menu.rescueTimer.seconds = game.rescueTimer.seconds
