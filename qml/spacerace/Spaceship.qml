@@ -69,7 +69,7 @@ GameObject {
                 var r = rotationY / ship._rotationMaxBank;
                 if (r < -1) r = -1;
                 if (r >  1) r =  1;
-                _directionInRadians += r * _directionAtMaxBank;
+                ship._directionInRadians += r * ship._directionAtMaxBank;
             }
         }
 
@@ -104,7 +104,7 @@ GameObject {
     }
 
     function setUniverseDirection(x, y) {
-        if (!localRoot.mouseControlled || ship._collisionTime || SharedScript.introMode)
+        if (!localRoot.mouseControlled || ship._collisionTime || _root.introMode)
             return;
 
         var halfShipHeight = ship.height / 2;
