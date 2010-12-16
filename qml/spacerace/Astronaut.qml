@@ -26,8 +26,10 @@ SpaceDebris {
 
     function reset()
     {
-        universeX = 5000;
+        universeX = 200;//5000;
         universeY = 0;
         opacity = 1;
+        rotationSpeed = 0;
+        rotation = 0;
     }
 }

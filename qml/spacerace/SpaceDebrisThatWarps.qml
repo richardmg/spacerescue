@@ -25,9 +25,9 @@ SpaceDebris {
 
         if (SharedScript.level > 18) {
             if (SharedScript.level % 2)
-                speedMaxX = -(SharedScript.level/100) * 5
+                speedMaxX = -(SharedScript.level/100) * 10
             else
-                speedMaxY = (SharedScript.level/100) * 5
+                speedMaxY = (SharedScript.level/100) * 10
         }
 
         speedX = (0.4 + (SharedScript.random.next() * 0.6)) * speedMaxX
