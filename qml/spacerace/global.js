@@ -46,7 +46,12 @@ function collidesWithShip(targetItem, radius, shiftX, shiftY)
 {
     var k1 = shipCollisionCenterX - (shiftX + targetItem.universeX + (targetItem.width / 2));
     var k2 = shipCollisionCenterY - (shiftY + targetItem.universeY + (targetItem.height / 2));
-    if (Math.sqrt((k1 * k1) + (k2 * k2)) < (radius + _shipCollisionRadius))
+    var minimumCollisionDistance = radius + _shipCollisionRadius
+    if (k1 > minimumCollisionDistance)
+        return false;
+    if (k2 > minimumCollisionDistance)
+        return false;
+    if (Math.sqrt((k1 * k1) + (k2 * k2)) < minimumCollisionDistance)
         return true;
     return false;
 }
